@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">  
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+<!-- 可以配置多个appender来对应不同的输出，如文件输出，sql输出，控制台输出，邮件输出等 -->  
+  <!-- [控制台STDOUT] 不同的输出类型对应着不同的calss，如控制台输出class对应着 org.apache.log4j.ConsoleAppender -->  
+  <appender name="console" class="org.apache.log4j.ConsoleAppender">  <!-- name提供给logger或者root调用 -->
+     <param name="encoding" value="utf-8" />  <!-- 保存字符集 -->
+     <param name="target" value="System.out" />  <!-- 输出到控制台 -->
+     <layout class="org.apache.log4j.PatternLayout"> <!-- loyout表示输出方式，可以多种，class值区分，PatternLayout表示自定义格式 --> 
+       <param name="ConversionPattern" value="%d{ISO8601} 耗时：%r [日志来自：%-40.40c{3} 日志类型: %-5p 日志内容：%m]%n" />  <!-- 输出格式，后面解释 -->
+     </layout>
+      <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="levelMin" value="INFO"/>
+            <param name="levelMax" value="DEBUG"/>
+            <param name="AcceptOnMatch" value="true"/>
+        </filter>  
+  </appender>  
+  
+   <!-- [debug日志APPENDER] -->  
+   <appender name="DEBUG-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">  
+     <param name="File" value="/logs/gascms_debug_log.log" />  
+     <param name="Append" value="true" />  
+     <param name="encoding" value="utf-8" />  
+       <param name="threshold" value="debug"/>
+     <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />  
+     <layout class="org.apache.log4j.PatternLayout">  
+        <param name="ConversionPattern" value="%d{ISO8601} 耗时：%r [日志来自：%-40.40c{3} 日志类型: %-5p 日志内容：%m]%n" />  
+     </layout>  
+   </appender>  
+   
+   <!-- [info日志APPENDER] -->  
+   <appender name="INFO-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">  
+     <param name="File" value="/logs/gascms_info_log.log" />  
+     <param name="Append" value="true" />  
+     <param name="encoding" value="utf-8" />
+     <param name="threshold" value="info"/>
+     <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />  
+     <layout class="org.apache.log4j.PatternLayout">  
+    <param name="ConversionPattern" value="%d{ISO8601} 耗时：%r [日志来自：%-40.40c{3} 日志类型: %-5p 日志内容：%m]%n" />  
+     </layout> 
+   </appender>  
+
+   <!-- [error日志APPENDER] -->  
+   <appender name="ERROR-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">  
+     <param name="File" value="/logs/gascms_error_log.log" />  
+     <param name="Append" value="true" />  
+     <param name="encoding" value="utf-8" />
+     <param name="threshold" value="error"/>
+     <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />  
+     <layout class="org.apache.log4j.PatternLayout">  
+    <param name="ConversionPattern" value="%d{ISO8601} 耗时：%r [日志来自：%-40.40c{3} 日志类型: %-5p 日志内容：%m]%n" />  
+     </layout> 
+   </appender>  
+  
+   <category name="com.mt">
+        <level value="INFO"/>
+        <appender-ref ref="INFO-APPENDER"/>
+        <appender-ref ref="DEBUG-APPENDER"/>
+        <appender-ref ref="ERROR-APPENDER"/>
+    </category>
+</log4j:configuration>

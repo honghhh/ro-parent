@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xmlns:p="http://www.springframework.org/schema/p"
+        xmlns:cache="http://www.springframework.org/schema/cache"
+        xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/cache
+        http://www.springframework.org/schema/cache/spring-cache-3.2.xsd"
+        default-lazy-init="false">
+
+        <!-- 扫描service层 -->
+        <context:component-scan base-package="com.project.service" />
+
+        <!-- 配置数据源和连接池 -->
+        <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+            <property name="url" value="${jdbc.url}" />
+            <property name="username" value="${jdbc.user}" />
+            <property name="password" value="${jdbc.password}" />
+            <!--连接池初始化配置 -->
+            <property name="initialSize" value="1" />
+            <property name="minIdle" value="1" />
+            <property name="maxActive" value="20" />
+            <property name="maxWait" value="60000" />
+            <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+            <property name="timeBetweenEvictionRunsMillis" value="60000" />
+            <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+            <property name="minEvictableIdleTimeMillis" value="300000" />
+            <property name="validationQuery" value="select  GETDATE()" />
+            <property name="testWhileIdle" value="true" />
+            <property name="testOnBorrow" value="false" />
+            <property name="testOnReturn" value="false" />
+            <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+            <property name="poolPreparedStatements" value="true" />
+            <property name="maxPoolPreparedStatementPerConnectionSize"
+                      value="20" />
+            <!-- 配置监控统计拦截的filters -->
+            <property name="filters" value="stat" />
+        </bean>
+
+        <!-- 配置SessionFactory初始化配置并解析xml -->
+        <bean id="SessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+            <!-- 配置数据源 -->
+            <property name="dataSource" ref="dataSource" />
+            <!-- 配置mybatis文件 -->
+            <property name="configLocation" value="classpath:/mybatis-config.xml"/>
+            <!-- 扫描xml文件 -->
+            <property name="mapperLocations" value="classpath:com/project/dao/mapper/*.xml"/>
+        </bean>
+
+        <!-- mapper扫描器 -->
+        <!-- spring与mybatis整合配置，扫描所有dao -->
+        <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+            <property name="basePackage" value="com.project.dao"/>
+            <property name="sqlSessionFactoryBeanName" value="SessionFactory"/>
+        </bean>
+
+        <!-- 事务控制器 -->
+        <bean id="transactionManager"
+              class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+            <!-- 数据源 -->
+            <property name="dataSource" ref="dataSource"></property>
+        </bean>
+
+        <!-- 配置基本事务定义,使用transactionManager作事务管理,默认find*方法的事务为readonly -->
+        <tx:advice id="txAdvice" transaction-manager="transactionManager">
+            <tx:attributes>
+                <!-- 指定哪些方法需要加入事务，可以使用通配符来只加入需要的方法 -->
+                <tx:method name="save*" propagation="REQUIRED"/>
+                <tx:method name="add*" propagation="REQUIRED"/>
+                <tx:method name="create*" propagation="REQUIRED"/>
+                <tx:method name="change*" propagation="REQUIRED"/>
+                <tx:method name="update*" propagation="REQUIRED"/>
+                <tx:method name="remove*" propagation="REQUIRED"/>
+                <tx:method name="delete*" propagation="REQUIRED"/>
+                <tx:method name="insert*" propagation="REQUIRED"/>
+                <tx:method name="handle*" propagation="REQUIRED"/>
+                <tx:method name="edit*" propagation="REQUIRED"/>
+                <tx:method name="find*" propagation="SUPPORTS"  read-only="true"/>
+            </tx:attributes>
+        </tx:advice>
+
+        <!-- aop切点 -->
+        <aop:config expose-proxy="true">
+            <aop:pointcut id="servicePointcut"
+                          expression="(execution(* com.project.service..*.*(..)) or execution(* com.project.service..*.*(..)))" />
+            <aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointcut" />
+        </aop:config>
+
+        <!--  配置使Spring采用CGLIB代理 -->
+        <aop:aspectj-autoproxy proxy-target-class="true" expose-proxy="true"/>
+
+        <!-- 启用对事务注解的支持 -->
+        <tx:annotation-driven transaction-manager="transactionManager"/>
+
+</beans>

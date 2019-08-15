@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd"
+        default-lazy-init="false">
+
+        <!--
+            classpath：resources目录下
+            mybatis-config.xml:
+                1.配置mybatis分页插件
+            spring-bean.xml:
+                2.配置加载数据库配置文件
+                3.配置数据源和连接池
+                4.配置SessionFactory
+                5.配置mapper扫描器
+                6.配置事务控制器
+                7.配置基本事务定义
+                8.配置aop切点
+                9.配置使Spring采用CGLIB代理
+                10.配置启用对事务注解的支持
+                11.扫描service层
+            spring-mvc.xml:
+                12.扫描controller层
+                13.配置springmvc注解驱动
+                14.配置jsp视图
+            web.xml:
+                15.初始化spring-bean.xml配置
+                16.配置编码过滤器
+                17.初始化spring-mvc配置
+            报错1：spring-bean.xml初始化时引入spring-ds.xml
+            报错2：spring-bean.xml配置资源映射<mvc:resources mapping="/views/**" location="/views/" />
+        -->
+
+        <!-- 加载数据库配置文件 -->
+        <bean id="propertyConfigurer"
+              class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+            <property name="locations">
+                <list>
+                    <value>classpath:/jdbc.properties</value>
+                </list>
+            </property>
+        </bean>
+
+        <!-- 引入spring  数据库配置-->
+        <import resource="classpath*:/spring-ds.xml" />
+</beans>
