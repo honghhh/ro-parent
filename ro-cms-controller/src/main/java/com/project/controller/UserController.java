@@ -1,6 +1,7 @@
 package com.project.controller;
 
 import com.project.service.UserService;
+import com.project.utils.MappingUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,9 +14,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/user/user")
+    @RequestMapping(value = MappingUtil.USER_USER)
     public ModelAndView userList(){
-        ModelAndView view = new ModelAndView("/user/user");
+        ModelAndView view = new ModelAndView(MappingUtil.USER_USER);
         return view;
     }
 
@@ -24,5 +25,4 @@ public class UserController {
     public Object userList1(){
         return userService.userList();
     }
-
 }

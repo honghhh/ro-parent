@@ -18,8 +18,16 @@
         http://www.springframework.org/schema/cache/spring-cache-3.2.xsd"
         default-lazy-init="false">
 
-        <!-- 扫描service层 -->
+        <!-- 扫描事务service层注入 -->
         <context:component-scan base-package="com.project.service" />
+
+        <!--  druid监控统计 -->
+        <bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">
+            <!-- 超过3秒为慢查询 -->
+            <property name="slowSqlMillis" value="3000" />
+            <!-- sql打印 -->
+            <property name="logSlowSql" value="false" />
+        </bean>
 
         <!-- 配置数据源和连接池 -->
         <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
@@ -102,4 +110,12 @@
         <!-- 启用对事务注解的支持 -->
         <tx:annotation-driven transaction-manager="transactionManager"/>
 
+        <!-- spring缓存配置 -->
+        <cache:annotation-driven cache-manager="cacheManager" />
+        <bean id="cacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+            <property name="configLocation" value="classpath:/ehcache.xml" />
+        </bean>
+        <bean id="cacheManager"  class="org.springframework.cache.ehcache.EhCacheCacheManager">
+            <property name="cacheManager" ref="cacheManagerFactory" />
+        </bean>
 </beans>

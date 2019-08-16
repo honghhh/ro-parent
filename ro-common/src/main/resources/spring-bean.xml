@@ -51,6 +51,20 @@
             </property>
         </bean>
 
-        <!-- 引入spring  数据库配置-->
+        <!-- 异常处理 -->
+        <bean id="exceptionResolver"
+              class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+            <property name="defaultErrorView" value="/exception" />
+            <property name="exceptionMappings">
+                <props>
+                    <prop key="java.lang.Exception">/exception</prop>
+                </props>
+            </property>
+        </bean>
+
+        <!-- springmvc图片上传 -->
+        <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
+
+        <!-- 引入spring数据库配置 -->
         <import resource="classpath*:/spring-ds.xml" />
 </beans>

@@ -40,7 +40,6 @@
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
     </listener>
 
-
     <!-- 初始化spring-bean.xml配置 同时加载引入的spring-ds.xml -->
     <context-param>
         <param-name>contextConfigLocation</param-name>

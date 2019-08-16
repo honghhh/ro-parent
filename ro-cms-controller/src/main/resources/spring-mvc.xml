@@ -13,12 +13,92 @@
                          http://www.springframework.org/schema/task
 						http://www.springframework.org/schema/task/spring-task-3.2.xsd">
 
-        <!-- 扫描controller层 -->
+        <!-- 扫描controller层注入 -->
         <context:component-scan base-package="com.project.controller" />
+        <!-- 扫描service层注入 -->
+        <context:component-scan base-package="com.project.service" />
+        <!-- 扫描interceptor注入 -->
+        <context:component-scan base-package="com.project.interceptor" />
 
         <!-- 会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 两个bean,是spring MVC为@Controllers分发请求所必须的 -->
         <!-- 指定自己定义的validator -->
-        <mvc:annotation-driven></mvc:annotation-driven>
+        <mvc:annotation-driven validator="validator"/>
+
+        <!-- 国际化(选择性配置) -->
+        <!-- 以下 validator ConversionService 在使用 mvc:annotation-driven 会 自动注册 -->
+        <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+            <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+            <!-- 如果不加默认到 使用classpath下的 ValidationMessages.properties -->
+            <property name="validationMessageSource" ref="messageSource"/>
+        </bean>
+        <!-- 国际化的消息资源文件（本系统中主要用于显示/错误消息定制） -->
+        <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+            <property name="basenames">
+                <list>
+                    <!-- 在web环境中一定要定位到classpath 否则默认到当前web应用下找 -->
+                    <value>classpath:messages</value>
+                    <value>classpath:org/hibernate/validator/ValidationMessages</value>
+                </list>
+            </property>
+            <property name="useCodeAsDefaultMessage" value="false"/>
+            <property name="defaultEncoding" value="UTF-8"/>
+            <property name="cacheSeconds" value="60"/>
+        </bean>
+        <bean id="localeResolver"
+              class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+            <property name="defaultLocale" value="zh_CN" />
+        </bean>
+
+        <!--
+            定时器配置
+            task:executor/@pool-size：可以指定执行线程池的初始大小、最大大小
+            task:executor/@queue-capacity：等待执行的任务队列的容量
+            task:executor/@rejection-policy：当等待队已满时的策略，分为丢弃、由任务执行器直接运行等方式
+        -->
+        <task:scheduler id="scheduler" pool-size="10" />
+        <task:executor id="executor" keep-alive="3600" pool-size="100-200" queue-capacity="500" rejection-policy="CALLER_RUNS" />
+        <task:annotation-driven executor="executor" scheduler="scheduler" />
+
+        <!-- json解析器 -->
+        <mvc:annotation-driven>
+            <mvc:message-converters register-defaults="true">
+                <bean
+                        class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                    <property name="supportedMediaTypes" value="application/json;charset=UTF-8" />
+                    <property name="features">
+                        <array>
+                            <value>WriteMapNullValue</value>
+                            <value>WriteNullStringAsEmpty</value>
+                        </array>
+                    </property>
+                </bean>
+            </mvc:message-converters>
+        </mvc:annotation-driven>
+
+        <!-- 拦截器 -->
+        <mvc:interceptors>
+            <mvc:interceptor>
+                <mvc:mapping path="/plat/**" />
+                <bean class="com.project.interceptor.LoginInterceptor" />
+            </mvc:interceptor>
+        </mvc:interceptors>
+
+        <!-- 映射访问资源 -->
+        <!--<mvc:view-controller path="/" view-name="redirect:/login" />-->
+        <!--<mvc:resources mapping="/css/**" location="/css/" />-->
+        <!--<mvc:resources mapping="/js/**" location="/js/" />-->
+        <!--<mvc:resources mapping="/lib/**" location="/lib/" />-->
+        <!--<mvc:resources mapping="/static/**" location="/static/" />-->
+        <!--<mvc:resources mapping="/images/**" location="/images/" />-->
+        <!--<mvc:resources mapping="/ueditor/**" location="/ueditor/" />-->
+        <mvc:resources mapping="/views/**" location="/views/" />
+
+        <!-- springmvc文件上传编码格式 -->
+        <bean id="multipartResolver"
+              class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+            <property name="maxUploadSize" value="-1" />
+            <property name="defaultEncoding" value="utf-8"></property>
+        </bean>
 
         <!-- jsp视图解析器 -->
         <bean id="viewResolverCommon" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -29,13 +109,30 @@
             </property>
         </bean>
 
-        <!--<mvc:view-controller path="/" view-name="redirect:/login" />-->
-        <!--<mvc:resources mapping="/css/**" location="/css/" />-->
-        <!--<mvc:resources mapping="/js/**" location="/js/" />-->
-        <!--<mvc:resources mapping="/lib/**" location="/lib/" />-->
-        <!--<mvc:resources mapping="/static/**" location="/static/" />-->
-        <!--<mvc:resources mapping="/images/**" location="/images/" />-->
-        <!--<mvc:resources mapping="/ueditor/**" location="/ueditor/" />-->
-        <mvc:resources mapping="/views/**" location="/views/" />
+        <!-- 异常处理 -->
+        <bean id="exceptionResolver"
+              class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+            <!-- 出现异常跳转到/view/exception.jsp -->
+            <property name="exceptionMappings">
+                <props>
+                    <prop key="java.lang.Exception">exception</prop>
+                </props>
+            </property>
+            <!-- 跳转到到对应的错误页面 -->
+            <property name="statusCodes">
+                <props>
+                    <prop key="500">500</prop>
+                    <prop key="404">404</prop>
+                    <prop key="403">403</prop>
+                </props>
+            </property>
 
+            <!-- 设置日志输出级别，不定义则默认不输出警告等错误日志信息 -->
+            <property name="warnLogCategory"
+                      value="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver" />
+            <!-- 默认错误页面，当找不到上面mappings中指定的异常对应视图时，使用本默认配置 -->
+            <!--<property name="defaultErrorView" value="error/500" />-->
+            <!-- 默认HTTP状态码 ，返回错误默认设置的状态码 -->
+            <property name="defaultStatusCode" value="200" />
+        </bean>
 </beans>

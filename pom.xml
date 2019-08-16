@@ -13,7 +13,6 @@
     <modules>
         <module>ro-common</module>
         <module>ro-cms-controller</module>
-        <module>ro-cms-controller</module>
         <module>ro-cms-service</module>
     </modules>
 
