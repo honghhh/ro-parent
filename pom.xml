@@ -14,6 +14,8 @@
         <module>ro-common</module>
         <module>ro-cms-controller</module>
         <module>ro-cms-service</module>
+        <module>ro-api-controller</module>
+        <module>ro-api-service</module>
     </modules>
 
     <!-- 项目名称 -->

@@ -14,11 +14,11 @@
 						http://www.springframework.org/schema/task/spring-task-3.2.xsd">
 
         <!-- 扫描controller层注入 -->
-        <context:component-scan base-package="com.project.controller" />
+        <context:component-scan base-package="com.project.api.controller" />
         <!-- 扫描service层注入 -->
-        <context:component-scan base-package="com.project.service" />
+        <context:component-scan base-package="com.project.api.service" />
         <!-- 扫描interceptor注入 -->
-        <context:component-scan base-package="com.project.interceptor" />
+        <context:component-scan base-package="com.project.api.interceptor" />
 
         <!-- 会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 两个bean,是spring MVC为@Controllers分发请求所必须的 -->
         <!-- 指定自己定义的validator -->
@@ -78,8 +78,8 @@
         <!-- 拦截器 -->
         <mvc:interceptors>
             <mvc:interceptor>
-                <mvc:mapping path="/plat/**" />
-                <bean class="com.project.interceptor.LoginInterceptor" />
+                <mvc:mapping path="/interceptor/**" />
+                <bean class="com.project.api.interceptor.TokenInterceptor" />
             </mvc:interceptor>
         </mvc:interceptors>
 

@@ -264,11 +264,11 @@
         </dependency>
 
         <!-- 自定义工具类 -->
-        <dependency>
+        <!--<dependency>
             <groupId>function.common</groupId>
             <artifactId>function-common</artifactId>
             <version>1.0</version>
-        </dependency>
+        </dependency>-->
 
         <!-- http请求 -->
         <dependency>
