@@ -6,5 +6,11 @@ package com.project.utils;
 public class MappingUtil {
 
     /** 登录页 */
+    public static final String login_page = "/loginPage";
+
+    /** 登录 */
     public static final String login = "/login";
+
+    /** 验证码 */
+    public static final String verifyImg = "/verifyImg";
 }
