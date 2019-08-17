@@ -20,6 +20,8 @@
 
         <!-- 扫描事务service层注入 -->
         <context:component-scan base-package="com.project.api.service" />
+        <!-- 扫描全局异常类注入 -->
+        <context:component-scan base-package="com.project.exception" />
 
         <!--  druid监控统计 -->
         <bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">
@@ -100,7 +102,7 @@
         <!-- aop切点 -->
         <aop:config expose-proxy="true">
             <aop:pointcut id="servicePointcut"
-                          expression="(execution(* com.project.api.service..*.*(..)) or execution(* com.project.api.service..*.*(..)))" />
+                          expression="(execution(* com.project.api.service..*.*(..)) or execution(* com.project.exception..*.*(..)))" />
             <aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointcut" />
         </aop:config>
 
