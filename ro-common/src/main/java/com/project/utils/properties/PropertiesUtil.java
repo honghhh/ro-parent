@@ -7,6 +7,12 @@ import java.util.ResourceBundle;
 
 public class PropertiesUtil {
 
+    /**
+     * 获取文件名键名对应的值
+     * @param filePath 文件名
+     * @param keyWord 键名
+     * @return
+     */
     public static String getProperties(String filePath, String keyWord) {
         ResourceBundle prop = null;
         String value = null;

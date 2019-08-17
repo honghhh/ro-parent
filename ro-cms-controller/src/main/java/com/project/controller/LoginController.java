@@ -15,7 +15,6 @@ public class LoginController {
 
     @RequestMapping(value = MappingUtil.login)
     public ModelAndView login(){
-        loginService.userList();
         ModelAndView view = new ModelAndView(MappingUtil.login);
         return view;
     }
