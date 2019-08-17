@@ -115,6 +115,12 @@
         <tx:annotation-driven transaction-manager="transactionManager"/>
 
         <!-- spring缓存配置 -->
+        <!--
+            使用方法：
+            1.在缓存类添加@EnableCaching注解
+            2.在缓存方法上添加@Cacheable(value="myCache", key = "1")
+            注：aop需开启代理模式，实体类要序列化，myCache为ehcache.xml中的缓存名字，key可以设为动态参数#user.id
+        -->
         <cache:annotation-driven cache-manager="cacheManager" />
         <bean id="cacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
             <property name="configLocation" value="classpath:/ehcache.xml" />

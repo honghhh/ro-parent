@@ -2,6 +2,7 @@ package com.project.api.controller;
 
 import com.project.api.service.LoginService;
 import com.project.api.utils.MappingUtil;
+import com.project.entity.User;
 import com.project.rest.GetRest;
 import com.project.rest.RestResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,8 @@ public class LoginController {
 
     @RequestMapping(value = MappingUtil.login)
     @ResponseBody
-    public RestResponse login(){
-        return GetRest.getSuccess("", loginService.userList());
+    public RestResponse login(User user){
+        user.setUsername("1");
+        return GetRest.getSuccess("", loginService.userList(user));
     }
 }
