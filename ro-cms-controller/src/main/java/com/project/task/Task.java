@@ -1,10 +1,13 @@
-package com.project.api.task;
+package com.project.task;
 
+import org.apache.log4j.Logger;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
-public class task {
+public class Task {
+
+	private static Logger log = Logger.getLogger(Task.class);
 
 	/**
 	 * CRON表达式    含义
@@ -23,10 +26,10 @@ public class task {
 	 */
 
 	/**
-	 * 每小时执行一次
+	 * 每秒钟执行一次
 	 */
-	@Scheduled(cron="0 0 0/1 * * ?")
+	@Scheduled(cron="0/1 * * * * ?")
 	public void aotoWx() {
-
+		log.info("adsfasdf");
 	}
 }

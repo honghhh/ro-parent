@@ -19,6 +19,8 @@
         <context:component-scan base-package="com.project.service" />
         <!-- 扫描interceptor注入 -->
         <context:component-scan base-package="com.project.interceptor" />
+        <!-- 扫描定时器注入 -->
+        <context:component-scan base-package="com.project.task" />
 
         <!-- 会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 两个bean,是spring MVC为@Controllers分发请求所必须的 -->
         <!-- 指定自己定义的validator -->
