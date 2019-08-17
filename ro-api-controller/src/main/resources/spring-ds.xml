@@ -22,6 +22,8 @@
         <context:component-scan base-package="com.project.api.service" />
         <!-- 扫描全局异常类注入 -->
         <context:component-scan base-package="com.project.exception" />
+        <!-- 扫描初始化启动类注入 -->
+        <context:component-scan base-package="com.project.config" />
 
         <!--  druid监控统计 -->
         <bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">
