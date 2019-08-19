@@ -28,11 +28,11 @@ public class Task {
 	/**
 	 * 每秒钟执行一次
 	 */
-	@Scheduled(cron="0/1 * * * * ?")
+	@Scheduled(cron="0 0 0 * * ?")
 	public void aotoWx() {
 		log.info("ro-api-info");
 		log.debug("ro-api-debug");
 		log.error("ro-api-error");
-		// System.out.println("ro-api");
+		System.out.println("ro-api");
 	}
 }
