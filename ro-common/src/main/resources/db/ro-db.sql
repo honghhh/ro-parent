@@ -11,7 +11,7 @@
  Target Server Version : 50560
  File Encoding         : 65001
 
- Date: 19/08/2019 20:19:54
+ Date: 19/08/2019 20:23:32
 */
 
 SET NAMES utf8mb4;
@@ -42,9 +42,14 @@ CREATE TABLE `role`  (
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '角色名称',
   `menuids` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '角色菜单权限组，逗号分隔',
   `status` int(1) NULL DEFAULT 0 COMMENT '0有效 -1无效',
-  `createtime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `createtime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色表' ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of role
+-- ----------------------------
+INSERT INTO `role` VALUES (1, '超级管理员', NULL, 0, NULL);
 
 -- ----------------------------
 -- Table structure for user
@@ -56,17 +61,15 @@ CREATE TABLE `user`  (
   `password` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '密码',
   `nickname` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '昵称',
   `headurl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '头像',
-  `roleid` int(11) NULL DEFAULT NULL,
+  `roleid` int(11) NULL DEFAULT 1 COMMENT '角色id',
   `status` int(2) NULL DEFAULT 0 COMMENT '0有效 -1无效',
-  `createtime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `createtime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台账号表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'admin', '21218cca77804d2ba1922c33e0151105', 'adsfsdf', NULL, NULL, 0, NULL);
-INSERT INTO `user` VALUES (2, '18316770399', '21218cca77804d2ba1922c33e0151105', NULL, NULL, NULL, 0, NULL);
-INSERT INTO `user` VALUES (3, '13800138000', '21218cca77804d2ba1922c33e0151105', NULL, NULL, NULL, 0, NULL);
+INSERT INTO `user` VALUES (1, 'admin', '21218cca77804d2ba1922c33e0151105', '', NULL, NULL, 0, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
