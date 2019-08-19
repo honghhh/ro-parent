@@ -23,7 +23,7 @@
             </div>
             <input placeholder='用户名' type='text' id="userName" class="action">
             <div class='validation'>
-                <img src='img/tick.png'>
+                <img src='/static/login/img/tick.png'>
             </div>
             </input>
         </div>
