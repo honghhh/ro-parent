@@ -18,7 +18,7 @@
 
    <!-- [debug日志APPENDER] -->
    <appender name="DEBUG-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
-       <param name="File" value="/logs/cms_debug_log.log" />
+       <param name="File" value="D:/java/workspace_idea/ro-parent/ro-cms-controller/src/main/resources/logs/cms_debug_log.log" />
        <param name="Append" value="true" />
        <param name="encoding" value="utf-8" />
        <param name="threshold" value="debug"/>
@@ -30,7 +30,7 @@
 
    <!-- [info日志APPENDER] -->
    <appender name="INFO-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
-       <param name="File" value="/logs/cms_info_log.log" />
+       <param name="File" value="D:/java/workspace_idea/ro-parent/ro-cms-controller/src/main/resources/logs/cms_info_log.log" />
        <param name="Append" value="true" />
        <param name="encoding" value="utf-8" />
        <param name="threshold" value="info"/>
@@ -42,7 +42,7 @@
 
    <!-- [error日志APPENDER] -->
    <appender name="ERROR-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
-       <param name="File" value="/logs/cms_error_log.log" />
+       <param name="File" value="D:/java/workspace_idea/ro-parent/ro-cms-controller/src/main/resources/logs/cms_error_log.log" />
        <param name="Append" value="true" />
        <param name="encoding" value="utf-8" />
        <param name="threshold" value="error"/>
