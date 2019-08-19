@@ -107,7 +107,6 @@
 <script src='/static/login/js/stopExecutionOnTimeout.js?t=1'></script>
 <script src="/static/login/js/jquery-2.1.1.min.js"></script>
 <script src="http://cdn.bootcss.com/jqueryui/1.11.0/jquery-ui.min.js"></script>
-<%--<script src="/static/login/js/login.js"></script>--%>
 <script>
     $(function () {
         $("#codeimage").animate({
