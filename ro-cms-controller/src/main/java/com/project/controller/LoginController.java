@@ -66,4 +66,19 @@ public class LoginController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 注册
+     * @param request 请求对象
+     * @param userName 账号
+     * @param passWord 密码
+     * @param code 验证码
+     * @return
+     */
+    @RequestMapping(value = MappingUtil.register)
+    @ResponseBody
+    public RestResponse register(HttpServletRequest request, String userName, String passWord, String code) {
+        RestResponse result = loginService.register(request, userName, passWord, code);
+        return result;
+    }
 }

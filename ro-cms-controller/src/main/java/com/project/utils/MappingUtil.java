@@ -13,4 +13,7 @@ public class MappingUtil {
 
     /** 验证码 */
     public static final String verifyImg = "/verifyImg";
+
+    /** 注册 */
+    public static final String register = "/register";
 }

@@ -21,7 +21,7 @@
             <div class='icon'>
                 <img src='/static/login/img/user_icon_copy.png'>
             </div>
-            <input placeholder='用户名' type='text' id="userName">
+            <input placeholder='用户名' type='text' id="userName" class="action">
             <div class='validation'>
                 <img src='img/tick.png'>
             </div>
@@ -31,7 +31,7 @@
             <div class='icon'>
                 <img src='/static/login/img/lock_icon_copy.png'>
             </div>
-            <input placeholder='密码' type='password' id="passWord">
+            <input placeholder='密码' type='password' id="passWord" class="action">
             <div class='validation'>
                 <img src='/static/login/img/tick.png'>
             </div>
@@ -62,7 +62,7 @@
             <div class='icon'>
                 <img src='/static/login/img/user_icon_copy.png'>
             </div>
-            <input placeholder='用户名' type='text' id="userName_sgin">
+            <input placeholder='用户名' type='text' id="userName_sgin" class="action">
             <div class='validation'>
                 <img src='/static/login/img/tick.png'>
             </div>
@@ -72,21 +72,18 @@
             <div class='icon'>
                 <img src='/static/login/img/lock_icon_copy.png'>
             </div>
-            <input placeholder='密码' type='password' id="passWord_sgin">
+            <input placeholder='密码' type='password' id="passWord_sgin" class="action">
             <div class='validation'>
                 <img src='/static/login/img/tick.png'>
             </div>
         </div>
         <div class='login_fields__password'>
             <div class='icon'>
-                <img src='/static/login/img/key.png'>
+                <img src='/static/login/img/lock_icon_copy.png'>
             </div>
             <input placeholder='验证码' type='text' id="code">
             <img class="validation2" onclick="javascript:document.getElementById('codeimage').src='/verifyImg?t=' + Math.random();"
                  src="/verifyImg" name="codeimage" id="codeimage"/>
-            <!-- <div class='validation'>
-                <img src='/static/login/img/tick.png'>
-            </div> -->
         </div>
         <div class='login_fields__submit d1' id="login_buttom">
             <input type='button' value='注册' onclick="sigin()" id="sigin_button_submit" class="box shake">
@@ -112,6 +109,12 @@
 <script src="http://cdn.bootcss.com/jqueryui/1.11.0/jquery-ui.min.js"></script>
 <%--<script src="/static/login/js/login.js"></script>--%>
 <script>
+    $(function () {
+        $("#codeimage").animate({
+            'opacity': '1',
+            'right': '30'
+        }, 200);
+    });
     $('#login_button_submit').click(function() {
         var userName = $("#userName").val().trim();
         var passWord = $("#passWord").val().trim();
@@ -170,7 +173,7 @@
                     $('.login').removeClass('testtwo');
                 }, 2500);
                 console.log(res)
-                if(res.state == "200") {
+                if(res.status) {
                     	window.location = "/plat/index";
                     //				登录成功
                     setTimeout(function() {
@@ -210,7 +213,7 @@
             'opacity': '.5'
         }, 200);
     });
-    $('input[type="text"],input[type="password"]').keyup(function() {
+    $('.action').keyup(function() {
         if(!$(this).val() == '') {
             $(this).next().animate({
                 'opacity': '1',
@@ -268,11 +271,12 @@
             },
             success: function(res) {
                 console.log(res)
-                if(res.state == "200") {
+                if(res.status) {
                     $("#span_sigin").html("注册成功")
-                    window.location = "/login";
+                    window.location = "/loginPage";
                 } else {
-                    $("#span_sigin").html(res.msg)
+                    $("#span_sigin").html(res.desc)
+                    $('#codeimage').click();
                 }
             }
         })
