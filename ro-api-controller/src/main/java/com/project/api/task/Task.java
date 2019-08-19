@@ -30,6 +30,7 @@ public class Task {
 	 */
 	@Scheduled(cron="0/1 * * * * ?")
 	public void aotoWx() {
-		log.info("adsfasdf");
+		log.info("ro-api");
+		// System.out.println("ro-api");
 	}
 }
