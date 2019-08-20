@@ -88,4 +88,14 @@ public class TestController {
         map.put("val6", val6);
         return GetRest.getSuccess("", map);
     }
+
+    /**
+     * 测试aop日志
+     */
+    @RequestMapping(value = "/test5")
+    @ResponseBody
+    public RestResponse test5(){
+        testService.login();
+        return GetRest.getSuccess("成功");
+    }
 }

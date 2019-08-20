@@ -2,6 +2,7 @@ package com.project.service;
 
 import com.project.dao.UserMapper;
 import com.project.entity.UserExample;
+import com.project.log.SystemLog;
 import com.project.rest.GetRest;
 import com.project.rest.RestResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,4 +22,8 @@ public class TestService {
         return GetRest.getSuccess("", userMapper.selectByExample(new UserExample()));
     }
 
+    @SystemLog(module = "登录模块", methods = "登录")
+    public String login() {
+        return "";
+    }
 }

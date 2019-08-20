@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * CmsSession
+ * ApiSession
  */
-public class CmsSession {
+public class ApiSession {
 
     /** 验证码 */
     public static final String VALID_CODE = "validCode";

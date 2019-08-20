@@ -1,5 +1,6 @@
 package com.project.api.service;
 
+import com.project.api.log.SystemLog;
 import com.project.dao.UserMapper;
 import com.project.entity.UserExample;
 import com.project.rest.GetRest;
@@ -21,4 +22,8 @@ public class TestService {
         return GetRest.getSuccess("", userMapper.selectByExample(new UserExample()));
     }
 
+    @SystemLog(module = "登录模块", methods = "登录")
+    public String login() {
+        return "";
+    }
 }

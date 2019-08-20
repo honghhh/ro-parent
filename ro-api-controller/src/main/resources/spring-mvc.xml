@@ -3,6 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                         http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
@@ -10,7 +11,9 @@
                         http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
                         http://www.springframework.org/schema/context
                         http://www.springframework.org/schema/context/spring-context-3.2.xsd
-                         http://www.springframework.org/schema/task
+                        http://www.springframework.org/schema/aop
+		                http://www.springframework.org/schema/aop/spring-aop.xsd
+                        http://www.springframework.org/schema/task
 						http://www.springframework.org/schema/task/spring-task-3.2.xsd">
 
         <!-- 扫描controller层注入 -->
@@ -21,6 +24,12 @@
         <context:component-scan base-package="com.project.api.interceptor" />
         <!-- 扫描定时器注入 -->
         <context:component-scan base-package="com.project.api.task" />
+        <!-- 扫描日志类注入 -->
+        <context:component-scan base-package="com.project.api.log" />
+
+        <!--  配置使Spring采用CGLIB代理 -->
+        <!-- 开启spring对@Aspectj的支持 自动找到@Aspect注解的bean -->
+        <aop:aspectj-autoproxy proxy-target-class="true" expose-proxy="true"/>
 
         <!-- 会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 两个bean,是spring MVC为@Controllers分发请求所必须的 -->
         <!-- 指定自己定义的validator -->

@@ -108,9 +108,6 @@
             <aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointcut" />
         </aop:config>
 
-        <!--  配置使Spring采用CGLIB代理 -->
-        <aop:aspectj-autoproxy proxy-target-class="true" expose-proxy="true"/>
-
         <!-- 启用对事务注解的支持 -->
         <tx:annotation-driven transaction-manager="transactionManager"/>
 
