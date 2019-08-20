@@ -90,7 +90,7 @@ public class TestController {
     }
 
     /**
-     * 测试aop日志
+     * 测试aop日志通知
      */
     @RequestMapping(value = "/test5")
     @ResponseBody
