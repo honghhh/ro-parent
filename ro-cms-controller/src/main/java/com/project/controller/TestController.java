@@ -50,7 +50,7 @@ public class TestController {
     }
 
     /**
-     * 测试json全局异常
+     * 测试page全局异常
      */
     @RequestMapping(value = "/test3")
     public ModelAndView test3(){
