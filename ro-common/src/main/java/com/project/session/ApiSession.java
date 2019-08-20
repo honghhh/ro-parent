@@ -1,5 +1,6 @@
 package com.project.session;
 
+import com.project.dto.cms.LoginDto;
 import com.project.entity.Menu;
 import com.project.entity.User;
 
@@ -77,9 +78,9 @@ public class ApiSession {
     /**
      * 用户设置session
      */
-    public static void setUser(HttpServletRequest request, User user) {
+    public static void setUser(HttpServletRequest request, LoginDto loginDto) {
         request.getSession().removeAttribute(USER);
-        request.getSession().setAttribute(USER, user);
+        request.getSession().setAttribute(USER, loginDto);
     }
 
     /**

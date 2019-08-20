@@ -3,6 +3,7 @@ package com.project.service;
 import com.project.dao.MenuMapper;
 import com.project.dao.RoleMapper;
 import com.project.dao.UserMapper;
+import com.project.dto.cms.LoginDto;
 import com.project.entity.Menu;
 import com.project.entity.MenuExample;
 import com.project.entity.Role;
@@ -73,8 +74,14 @@ public class LoginService {
         for (Menu m : menus) {
             menuUrls.add(m.getUrl());
         }
+        // 保存登录信息对象
+        LoginDto loginDto = new LoginDto();
+        loginDto.setLogin(user.getLogin());
+        loginDto.setNickname(user.getNickname());
+        loginDto.setUserid(user.getId());
+        loginDto.setRolename(role.getName());
         // 保存到session
-        CmsSession.setUser(request, user);
+        CmsSession.setUser(request, loginDto);
         CmsSession.setUserId(request, user.getId());
         CmsSession.setRoleId(request, user.getRoleid());
         CmsSession.setMenuList(request, menus);
