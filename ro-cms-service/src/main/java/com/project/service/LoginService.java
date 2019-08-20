@@ -58,9 +58,9 @@ public class LoginService {
         // 查询菜单
         Role role = roleMapper.selectByPrimaryKey(user.getRoleid());
         if (role == null) {
-            return GetRest.getFail("角色不存在");
+            return GetRest.getFail("角色不存在，请联系后台人员分配角色");
         }
-        // 根据角色所有的menuid
+        // 根据角色所有的菜单id
         List<Integer> list = FunctionUtils.getIntegerList(role.getMenuids().split(","));
         if (list == null || list.size() < 1) {
             return GetRest.getFail("当前角色没有菜单权限");
@@ -69,7 +69,7 @@ public class LoginService {
         example.createCriteria().andIdIn(list).andStatusEqualTo(StaticUtils.status_yes);
         example.setOrderByClause("sort asc");
         List<Menu> menus = menuMapper.selectByExample(example);
-        // 获取菜单url集合
+        // 获取菜单地址集合
         List<String> menuUrls = new ArrayList<>();
         for (Menu m : menus) {
             menuUrls.add(m.getUrl());
