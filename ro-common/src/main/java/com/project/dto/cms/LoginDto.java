@@ -6,34 +6,20 @@ package com.project.dto.cms;
  */
 public class LoginDto {
 
-    /** 登录账号 */
-    private String login;
     /** 用户id */
     private Integer userid;
-    /** 角色名称 */
-    private String rolename;
+
+    /** 登录账号 */
+    private String login;
+
+    /** 用户密码 */
+    private String password;
+
     /** 用户昵称*/
     private String nickname;
 
-    /**
-     * Gets the value of login.
-     *
-     * @return the value of login
-     */
-    public String getLogin() {
-        return login;
-    }
-
-    /**
-     * Sets the login.
-     *
-     * <p>You can use getLogin() to get the value of login</p>
-     *
-     * @param login login
-     */
-    public void setLogin(String login) {
-        this.login = login;
-    }
+    /** 角色名称 */
+    private String rolename;
 
     /**
      * Gets the value of userid.
@@ -56,23 +42,43 @@ public class LoginDto {
     }
 
     /**
-     * Gets the value of rolename.
+     * Gets the value of login.
      *
-     * @return the value of rolename
+     * @return the value of login
      */
-    public String getRolename() {
-        return rolename;
+    public String getLogin() {
+        return login;
     }
 
     /**
-     * Sets the rolename.
+     * Sets the login.
      *
-     * <p>You can use getRolename() to get the value of rolename</p>
+     * <p>You can use getLogin() to get the value of login</p>
      *
-     * @param rolename rolename
+     * @param login login
      */
-    public void setRolename(String rolename) {
-        this.rolename = rolename;
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    /**
+     * Gets the value of password.
+     *
+     * @return the value of password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * Sets the password.
+     *
+     * <p>You can use getPassword() to get the value of password</p>
+     *
+     * @param password password
+     */
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     /**
@@ -93,5 +99,25 @@ public class LoginDto {
      */
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    /**
+     * Gets the value of rolename.
+     *
+     * @return the value of rolename
+     */
+    public String getRolename() {
+        return rolename;
+    }
+
+    /**
+     * Sets the rolename.
+     *
+     * <p>You can use getRolename() to get the value of rolename</p>
+     *
+     * @param rolename rolename
+     */
+    public void setRolename(String rolename) {
+        this.rolename = rolename;
     }
 }

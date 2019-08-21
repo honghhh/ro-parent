@@ -1,194 +1,132 @@
 package com.project.utils.cookies;
 
-import com.project.utils.pwd.DESEncode;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CookiesUtils {
 
-    public static final String cookies_domain = "globalfishnet.com";
-    private static final String cookie_key = "userticket";
-    private static final String language_cookie_key = "languageticket";
-    private static final String macurl_cookie_key = "macurlticket";
-
-    /**************************************************** 用户 ********************************************************/
-    /**
-     * 保存cookies
-     * @param response
-     * @param id
-     */
-    public static void setUserCookies(HttpServletResponse response, Integer id) {
-        String idstr = DESEncode.encrypt(String.valueOf(id));
-        Cookie name = new Cookie(cookie_key, idstr);
-        name.setDomain(cookies_domain);
-        name.setPath("/");
-        response.addCookie(name);
-    }
+    public static final int COOKIE_MAX_AGE = 7 * 24 * 3600;
+    public static final int COOKIE_HALF_HOUR = 30 * 60;
 
     /**
-     * 取ticket
-     * @param request
-     * @return
-     */
-    public static String getCookies(HttpServletRequest request) {
-        try {
-            Cookie[] cookies = request.getCookies();
-            String cookiesString = "";
-            if (cookies != null) {
-                for (int i = 0; i < cookies.length; i++) {
-                    Cookie c = cookies[i];
-                    if (c.getName().equalsIgnoreCase(cookie_key)) {
-                        cookiesString = c.getValue();
-                        break;
-                    }
-                }
-            }
-            return cookiesString;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /**
-     * 移除ticket
-     * @param request
-     * @param response
-     */
-    public static void removeCookie(HttpServletRequest request, HttpServletResponse response) {
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (int i = 0; i < cookies.length; i++) {
-                String cookieName = cookies[i].getName();
-                if (cookieName.equals(cookie_key)) {
-                    cookies[i].setValue(null);
-                    cookies[i].setPath("/");
-                    cookies[i].setDomain(cookies_domain);
-                    cookies[i].setMaxAge(0);
-                    response.addCookie(cookies[i]);
-                }
-            }
-        }
-    }
-
-    /************************************************** 语种 ****************************************************************/
-    /**
-     * 保存cookies
-     * @param response
-     */
-    public static void setLanguageCookies(HttpServletResponse response, String language) {
-        Cookie name = new Cookie(language_cookie_key, language);
-        name.setDomain(cookies_domain);
-        name.setPath("/");
-        response.addCookie(name);
-    }
-
-    /**
-     * 取ticket
+     * 根据Cookie名称得到Cookie对象，不存在该对象则返回Null
      *
      * @param request
+     * @param name
      * @return
      */
-    public static String getLanguageCookies(HttpServletRequest request) {
-        try {
-            Cookie[] cookies = request.getCookies();
-            String cookiesString = "";
-            if (cookies != null) {
-                for (int i = 0; i < cookies.length; i++) {
-                    Cookie c = cookies[i];
-                    if (c.getName().equalsIgnoreCase(language_cookie_key)) {
-                        cookiesString = c.getValue();
-                        break;
-                    }
-                }
-            }
-            return cookiesString;
-        } catch (Exception e) {
-            e.printStackTrace();
+    public static Cookie getCookie(HttpServletRequest request, String name) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies == null) {
+            return null;
         }
-        return null;
+        Cookie cookie = null;
+        for (Cookie c : cookies) {
+            if (name.equals(c.getName())) {
+                cookie = c;
+                break;
+            }
+        }
+        return cookie;
     }
 
     /**
-     * 移除ticket
+     * 根据Cookie名称直接得到Cookie值
      *
      * @param request
-     * @param response
-     */
-    public static void removeLanguageCookie(HttpServletRequest request, HttpServletResponse response) {
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (int i = 0; i < cookies.length; i++) {
-                String cookieName = cookies[i].getName();
-                if (cookieName.equals(language_cookie_key)) {
-                    cookies[i].setValue(null);
-                    cookies[i].setPath("/");
-                    cookies[i].setDomain(cookies_domain);
-                    cookies[i].setMaxAge(0);
-                    response.addCookie(cookies[i]);
-                }
-            }
-        }
-    }
-
-    /******************************************************** 机器 ****************************************************/
-    /**
-     * 保存cookies
-     * @param response
-     */
-    public static void setMacurlCookies(HttpServletResponse response, String macurl) {
-        String idstr = DESEncode.encrypt(macurl);
-        Cookie name = new Cookie(macurl_cookie_key, idstr);
-        name.setDomain(cookies_domain);
-        name.setPath("/");
-        response.addCookie(name);
-    }
-
-    /**
-     * 取ticket
-     * @param request
+     * @param name
      * @return
      */
-    public static String getMacurlCookies(HttpServletRequest request) {
-        try {
-            Cookie[] cookies = request.getCookies();
-            String cookiesString = "";
-            if (cookies != null) {
-                for (int i = 0; i < cookies.length; i++) {
-                    Cookie c = cookies[i];
-                    if (c.getName().equalsIgnoreCase(macurl_cookie_key)) {
-                        cookiesString = c.getValue();
-                        break;
-                    }
-                }
-            }
-            return cookiesString;
-        } catch (Exception e) {
-            e.printStackTrace();
+    public static String getCookieValue(HttpServletRequest request, String name) {
+        Cookie cookie = getCookie(request, name);
+        if(cookie != null){
+            return cookie.getValue();
         }
         return null;
     }
 
     /**
-     * 移除ticket
+     * 移除cookie
      * @param request
      * @param response
+     * @param name 这个是名称，不是值
      */
-    public static void removeMacurlCookie(HttpServletRequest request, HttpServletResponse response) {
+    public static void removeCookie(HttpServletRequest request,
+                                    HttpServletResponse response, String name) {
+        if (null == name) {
+            return;
+        }
+        Cookie cookie = getCookie(request, name);
+        if(null != cookie){
+            cookie.setPath("/");
+            cookie.setValue("");
+            cookie.setMaxAge(0);
+            response.addCookie(cookie);
+        }
+    }
+
+    /**
+     * 添加一条新的Cookie，可以指定过期时间(单位：秒)
+     *
+     * @param response
+     * @param name
+     * @param value
+     * @param maxValue
+     */
+    public static void setCookie(HttpServletResponse response, String name,
+                                 String value, int maxValue) {
+        if (StringUtils.isBlank(name)) {
+            return;
+        }
+        if (null == value) {
+            value = "";
+        }
+        Cookie cookie = new Cookie(name, value);
+        cookie.setPath("/");
+        if (maxValue != 0) {
+            cookie.setMaxAge(maxValue);
+        } else {
+            cookie.setMaxAge(COOKIE_HALF_HOUR);
+        }
+        response.addCookie(cookie);
+        try {
+            response.flushBuffer();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 添加一条新的Cookie，默认30分钟过期时间
+     *
+     * @param response
+     * @param name
+     * @param value
+     */
+    public static void setCookie(HttpServletResponse response, String name,
+                                 String value) {
+        setCookie(response, name, value, COOKIE_HALF_HOUR);
+    }
+
+    /**
+     * 将cookie封装到Map里面
+     * @param request
+     * @return
+     */
+    public static Map<String,Cookie> getCookieMap(HttpServletRequest request){
+        Map<String,Cookie> cookieMap = new HashMap<String,Cookie>();
         Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (int i = 0; i < cookies.length; i++) {
-                String cookieName = cookies[i].getName();
-                if (cookieName.equals(macurl_cookie_key)) {
-                    cookies[i].setValue(null);
-                    cookies[i].setPath("/");
-                    cookies[i].setDomain(cookies_domain);
-                    cookies[i].setMaxAge(0);
-                    response.addCookie(cookies[i]);
-                }
+        if(cookies != null){
+            for(Cookie cookie : cookies){
+                cookieMap.put(cookie.getName(), cookie);
             }
         }
+        return cookieMap;
     }
 }

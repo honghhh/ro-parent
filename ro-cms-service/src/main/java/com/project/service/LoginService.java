@@ -13,14 +13,18 @@ import com.project.rest.RestResponse;
 import com.project.session.CmsSession;
 import com.project.utils.FunctionUtils;
 import com.project.utils.StaticUtils;
+import com.project.utils.cookies.CookiesUtils;
+import com.project.utils.jwt.JwtUtils;
 import com.project.utils.pwd.Encode;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class LoginService {
@@ -38,7 +42,7 @@ public class LoginService {
      * @param passWord 密码
      * @return
      */
-    public RestResponse login(HttpServletRequest request, String userName, String passWord){
+    public RestResponse login(HttpServletRequest request, HttpServletResponse response, String userName, String passWord){
         if (StringUtils.isBlank(userName)) {
             return GetRest.getFail("请输入账号");
         }
@@ -76,9 +80,10 @@ public class LoginService {
         }
         // 保存登录信息对象
         LoginDto loginDto = new LoginDto();
-        loginDto.setLogin(user.getLogin());
-        loginDto.setNickname(user.getNickname());
         loginDto.setUserid(user.getId());
+        loginDto.setLogin(user.getLogin());
+        loginDto.setPassword(user.getPassword());
+        loginDto.setNickname(user.getNickname());
         loginDto.setRolename(role.getName());
         // 保存到session
         CmsSession.setUser(request, loginDto);
@@ -86,6 +91,10 @@ public class LoginService {
         CmsSession.setRoleId(request, user.getRoleid());
         CmsSession.setMenuList(request, menus);
         CmsSession.setMenuUrlList(request, menuUrls);
+        // 生成jwt 设置30分钟有效期
+        String token = JwtUtils.createJWT(TimeUnit.MINUTES.toMillis(30), loginDto);
+        // 写入token到cookie 页面请求自动携带cookie
+        CookiesUtils.setCookie(response, "token", token);
         return GetRest.getSuccess("登录成功");
     }
 

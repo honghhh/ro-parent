@@ -1,6 +1,7 @@
 package com.project.log;
 
 import com.project.dao.LogMapper;
+import com.project.dto.cms.LoginDto;
 import com.project.entity.Log;
 import com.project.entity.User;
 import com.project.session.CmsSession;
@@ -76,7 +77,7 @@ public class LogAopAction {
                         // 获取request对象
                         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
                         // 获取当前登陆用户信息
-                        User loginUser = CmsSession.getUser(request);
+                        LoginDto loginUser = CmsSession.getUser(request);
                         if (loginUser == null) {
                             log.setLoginaccount("—— ——");
                         } else {

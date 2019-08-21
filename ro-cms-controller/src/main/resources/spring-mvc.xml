@@ -89,12 +89,26 @@
         <!-- 拦截器 -->
         <mvc:interceptors>
             <mvc:interceptor>
-                <mvc:mapping path="/plat/**" />
-                <bean class="com.project.interceptor.LoginInterceptor" />
+                <!-- 拦截所有 -->
+                <mvc:mapping path="/**" />
+                <!-- 放行请求方法 -->
+                <mvc:exclude-mapping path="/loginPage" />
+                <mvc:exclude-mapping path="/login" />
+                <mvc:exclude-mapping path="/verifyImg" />
+                <mvc:exclude-mapping path="/register" />
+                <!-- 放行静态资源 -->
+                <mvc:exclude-mapping path="/css/**" />
+                <mvc:exclude-mapping path="/js/**" />
+                <mvc:exclude-mapping path="/lib/**" />
+                <mvc:exclude-mapping path="/static/**" />
+                <mvc:exclude-mapping path="/images/**" />
+                <mvc:exclude-mapping path="/ueditor/**" />
+                <mvc:exclude-mapping path="/views/**" />
+                <bean class="com.project.interceptor.TokenInterceptor" />
             </mvc:interceptor>
         </mvc:interceptors>
 
-        <!-- 映射访问资源 -->
+        <!-- 映射访问资源 location放行目录 mapping放行文件 -->
         <mvc:view-controller path="/" view-name="redirect:/loginPage" />
         <mvc:resources mapping="/css/**" location="/css/" />
         <mvc:resources mapping="/js/**" location="/js/" />

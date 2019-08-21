@@ -40,8 +40,8 @@ public class LoginController {
      */
     @RequestMapping(value = MappingUtil.login)
     @ResponseBody
-    public RestResponse login(HttpServletRequest request, String userName, String passWord){
-        RestResponse result = loginService.login(request, userName, passWord);
+    public RestResponse login(HttpServletRequest request, HttpServletResponse response, String userName, String passWord){
+        RestResponse result = loginService.login(request, response, userName, passWord);
         return result;
     }
 

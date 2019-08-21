@@ -86,8 +86,8 @@ public class ApiSession {
     /**
      * 用户获取session
      */
-    public static User getUser(HttpServletRequest request) {
-        return (User) request.getSession().getAttribute(USER);
+    public static LoginDto getUser(HttpServletRequest request) {
+        return (LoginDto) request.getSession().getAttribute(USER);
     }
 
     /**
