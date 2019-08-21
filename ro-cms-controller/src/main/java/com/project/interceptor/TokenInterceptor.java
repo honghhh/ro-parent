@@ -4,7 +4,7 @@ import com.project.dao.UserMapper;
 import com.project.dto.cms.LoginDto;
 import com.project.session.CmsSession;
 import com.project.utils.MappingUtil;
-import com.project.utils.jwt.JwtUtils;
+import com.project.utils.jwt.JwtUtil;
 import com.project.utils.token.TokenUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +52,7 @@ public class TokenInterceptor implements HandlerInterceptor {
         LoginDto loginDto = CmsSession.getUser(request);
         try {
             // 校验token
-            Boolean verify = JwtUtils.isVerify(token, loginDto);
+            Boolean verify = JwtUtil.isVerify(token, loginDto);
             // 如果token里的信息与session对象里面不符 验证失败
             if (!verify) {
                 response.sendRedirect(request.getContextPath() + MappingUtil.login_page);
