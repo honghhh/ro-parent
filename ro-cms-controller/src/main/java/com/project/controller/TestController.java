@@ -1,5 +1,7 @@
 package com.project.controller;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.project.entity.User;
 import com.project.exception.ThrowJsonException;
 import com.project.exception.ThrowPageException;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -105,7 +108,12 @@ public class TestController {
     @RequestMapping(value = "/test6")
     @ResponseBody
     public RestResponse test6(){
-        testService.queryUserList2();
-        return GetRest.getSuccess("成功");
+        // 如果走了缓存取出来是string
+        if (testService.queryUserList2() instanceof String) {
+            String a = (String) testService.queryUserList2();
+            return GetRest.getSuccess("成功", JSONArray.parseArray(a, User.class));
+        }
+        // 如果没走缓存取出来是list直接返回
+        return GetRest.getSuccess("成功", testService.queryUserList2());
     }
 }

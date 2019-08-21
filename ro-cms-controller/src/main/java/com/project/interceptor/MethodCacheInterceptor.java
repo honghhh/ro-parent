@@ -1,5 +1,6 @@
 package com.project.interceptor;
 
+import com.alibaba.fastjson.JSONObject;
 import com.project.utils.redis.RedisUtil;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
@@ -41,7 +42,7 @@ public class MethodCacheInterceptor implements MethodInterceptor {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        redisUtil.set(tkey, tvalue, Long.parseLong(defaultCacheExpireTime));
+                        redisUtil.set(tkey, JSONObject.toJSONString(tvalue), Long.parseLong(defaultCacheExpireTime));
                     }
                 }).start();
             }
