@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CookiesUtils {
+public class CookiesUtil {
 
     public static final int COOKIE_MAX_AGE = 7 * 24 * 3600;
     public static final int COOKIE_HALF_HOUR = 30 * 60;

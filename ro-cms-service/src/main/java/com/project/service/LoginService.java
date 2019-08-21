@@ -13,8 +13,8 @@ import com.project.rest.RestResponse;
 import com.project.session.CmsSession;
 import com.project.utils.FunctionUtils;
 import com.project.utils.StaticUtils;
-import com.project.utils.cookies.CookiesUtils;
-import com.project.utils.jwt.JwtUtils;
+import com.project.utils.cookies.CookiesUtil;
+import com.project.utils.jwt.JwtUtil;
 import com.project.utils.pwd.Encode;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,9 +92,9 @@ public class LoginService {
         CmsSession.setMenuList(request, menus);
         CmsSession.setMenuUrlList(request, menuUrls);
         // 生成jwt 设置30分钟有效期
-        String token = JwtUtils.createJWT(TimeUnit.MINUTES.toMillis(30), loginDto);
+        String token = JwtUtil.createJWT(TimeUnit.MINUTES.toMillis(30), loginDto);
         // 写入token到cookie 页面请求自动携带cookie
-        CookiesUtils.setCookie(response, "token", token);
+        CookiesUtil.setCookie(response, "token", token);
         return GetRest.getSuccess("登录成功");
     }
 
