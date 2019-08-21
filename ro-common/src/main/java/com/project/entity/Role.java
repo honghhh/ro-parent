@@ -6,7 +6,7 @@ import java.util.Date;
  * 角色表
  * @author huangh
  */
-public class Role {
+public class Role extends Page {
 
     /** ID */
     private Integer id;

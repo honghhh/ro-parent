@@ -1,6 +1,7 @@
 package com.project.service;
 
 import com.project.dao.UserMapper;
+import com.project.entity.User;
 import com.project.entity.UserExample;
 import com.project.log.SystemLog;
 import com.project.rest.GetRest;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @EnableCaching
@@ -25,5 +28,9 @@ public class TestService {
     @SystemLog(module = "登录模块", methods = "登录")
     public String login() {
         return "";
+    }
+
+    public List<User> queryUserList2() {
+        return userMapper.selectByExample(new UserExample());
     }
 }

@@ -98,4 +98,14 @@ public class TestController {
         testService.login();
         return GetRest.getSuccess("成功");
     }
+
+    /**
+     * 测试redis缓存
+     */
+    @RequestMapping(value = "/test6")
+    @ResponseBody
+    public RestResponse test6(){
+        testService.queryUserList2();
+        return GetRest.getSuccess("成功");
+    }
 }

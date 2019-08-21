@@ -6,7 +6,7 @@ import java.util.Date;
  * 操作日志记录表
  * @author huangh
  */
-public class Log {
+public class Log extends Page {
 
     /** ID */
     private Integer id;
