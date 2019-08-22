@@ -1,6 +1,5 @@
 package com.project.api.interceptor;
 
-import com.project.api.utils.MappingUtil;
 import com.project.rest.RestResponse;
 import com.project.session.ApiSession;
 import com.project.utils.FunctionUtils;
