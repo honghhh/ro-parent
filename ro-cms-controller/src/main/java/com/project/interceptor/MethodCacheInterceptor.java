@@ -17,6 +17,10 @@ public class MethodCacheInterceptor implements MethodInterceptor {
     private List<String> methodNamesList; // 禁用缓存的方法列表
     private String defaultCacheExpireTime; // 缓存默认的过期时间
 
+    /**
+     * 实现MethodInterceptor接口，达到方法执行前后增强
+     * @param invocation invocation.proceed()方法为执行controller 可在这个方法前后进行特殊处理
+     */
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
         Object value = null;
@@ -34,6 +38,7 @@ public class MethodCacheInterceptor implements MethodInterceptor {
             if (redisUtil.exists(key)) {
                 return redisUtil.get(key);
             }
+            // invocation.proceed()执行controller方法
             // 写入缓存
             value = invocation.proceed();
             if (value != null) {
@@ -42,7 +47,7 @@ public class MethodCacheInterceptor implements MethodInterceptor {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        redisUtil.set(tkey, JSONObject.toJSONString(tvalue), Long.parseLong(defaultCacheExpireTime));
+                        redisUtil.set(tkey, tvalue, Long.parseLong(defaultCacheExpireTime));
                     }
                 }).start();
             }

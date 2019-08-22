@@ -108,12 +108,7 @@ public class TestController {
     @RequestMapping(value = "/test6")
     @ResponseBody
     public RestResponse test6(){
-        // 如果走了缓存取出来是string
-        if (testService.queryUserList2() instanceof String) {
-            String a = (String) testService.queryUserList2();
-            return GetRest.getSuccess("成功", JSONArray.parseArray(a, User.class));
-        }
-        // 如果没走缓存取出来是list直接返回
-        return GetRest.getSuccess("成功", testService.queryUserList2());
+        List<User> list = testService.queryUserList2();
+        return GetRest.getSuccess("成功", list);
     }
 }

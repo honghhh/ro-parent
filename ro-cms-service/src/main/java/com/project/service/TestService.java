@@ -30,8 +30,8 @@ public class TestService {
         return "";
     }
 
-    public Object queryUserList2() {
-        Object object = userMapper.selectByExample(new UserExample());
-        return object;
+    public List<User> queryUserList2() {
+        List<User> list = userMapper.selectByExample(new UserExample());
+        return list;
     }
 }
