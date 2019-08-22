@@ -102,6 +102,7 @@
         </tx:advice>
 
         <!-- aop切点 -->
+        <!-- 第一个*表示返回值，第二个*表示所有类，第三个*表示所有方法，(..)表示方法的任何参数-->
         <aop:config expose-proxy="true">
             <aop:pointcut id="servicePointcut"
                           expression="(execution(* com.project.api.service..*.*(..)) or execution(* com.project.exception..*.*(..)))" />
