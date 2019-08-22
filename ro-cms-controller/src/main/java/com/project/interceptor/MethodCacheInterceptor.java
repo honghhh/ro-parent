@@ -1,6 +1,5 @@
 package com.project.interceptor;
 
-import com.alibaba.fastjson.JSONObject;
 import com.project.utils.redis.RedisUtil;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;

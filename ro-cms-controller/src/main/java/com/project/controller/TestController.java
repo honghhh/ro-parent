@@ -1,7 +1,5 @@
 package com.project.controller;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.project.entity.User;
 import com.project.exception.ThrowJsonException;
 import com.project.exception.ThrowPageException;
@@ -42,7 +40,7 @@ public class TestController {
      */
     @RequestMapping(value = "/test2")
     @ResponseBody
-    public RestResponse test2(){
+    public RestResponse test2() {
         try {
             User user = null;
             System.out.println(user.getPassword());
@@ -56,7 +54,7 @@ public class TestController {
      * 测试page全局异常
      */
     @RequestMapping(value = "/test3")
-    public ModelAndView test3(){
+    public ModelAndView test3() {
         ModelAndView view = new ModelAndView("/test3");
         try {
             User user = null;
@@ -72,11 +70,11 @@ public class TestController {
      */
     @RequestMapping(value = "/test4")
     @ResponseBody
-    public RestResponse test4(HttpServletRequest request){
+    public RestResponse test4(HttpServletRequest request) {
         String base = BaseUtils.getLanguage(request);
         String val1 = PropertiesUtil.getVal("a", "");
         String val2 = PropertiesUtil.getVal("a", "_en");
-        String arr[] = {"宝宝"};
+        String[] arr = {"宝宝"};
         String val3 = PropertiesUtil.getVal("b", arr, "");
         String val4 = PropertiesUtil.getVal("b", arr, "_en");
         String val5 = PropertiesUtil.getProperties("sys-infos_cn", "c");
@@ -97,7 +95,7 @@ public class TestController {
      */
     @RequestMapping(value = "/test5")
     @ResponseBody
-    public RestResponse test5(){
+    public RestResponse test5() {
         testService.login();
         return GetRest.getSuccess("成功");
     }
@@ -107,8 +105,9 @@ public class TestController {
      */
     @RequestMapping(value = "/test6")
     @ResponseBody
-    public RestResponse test6(){
+    public RestResponse test6() {
         List<User> list = testService.queryUserList2();
         return GetRest.getSuccess("成功", list);
     }
+
 }
