@@ -24,22 +24,26 @@ public class MethodCacheInterceptor implements MethodInterceptor {
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
         Object value = null;
-
+        // 获取类名
         String targetName = invocation.getThis().getClass().getName();
+        // 获取方法名
         String methodName = invocation.getMethod().getName();
+        // 如果缓存已存在
         if (!isAddCache(targetName, methodName)) {
-            // 跳过缓存返回结果
+            // 跳过缓存执行controller
             return invocation.proceed();
         }
+        // 获取参数名
         Object[] arguments = invocation.getArguments();
+        // 获取拼接缓存键名
         String key = getCacheKey(targetName, methodName, arguments);
         try {
             // 判断是否有缓存
             if (redisUtil.exists(key)) {
+                // 有则直接返回缓存数据不执行controller
                 return redisUtil.get(key);
             }
-            // invocation.proceed()执行controller方法
-            // 写入缓存
+            // 否则执行controller方法 写入缓存
             value = invocation.proceed();
             if (value != null) {
                 final String tkey = key;
