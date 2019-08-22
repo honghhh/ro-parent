@@ -98,4 +98,14 @@ public class TestController {
         testService.login();
         return GetRest.getSuccess("成功");
     }
+
+    /**
+     * 测试redis
+     */
+    @RequestMapping(value = "/api/test6")
+    @ResponseBody
+    public RestResponse test6(){
+        testService.test6();
+        return GetRest.getSuccess("成功");
+    }
 }

@@ -47,6 +47,7 @@
             <property name="locations">
                 <list>
                     <value>classpath:/jdbc.properties</value>
+                    <value>classpath:/redis.properties</value>
                 </list>
             </property>
         </bean>
@@ -67,4 +68,6 @@
 
         <!-- 引入spring数据库配置 -->
         <import resource="classpath*:/spring-ds.xml" />
+        <!-- 引入redis配置 -->
+        <import resource="classpath*:/spring-redis.xml" />
 </beans>

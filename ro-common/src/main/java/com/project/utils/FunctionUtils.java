@@ -1,8 +1,13 @@
 package com.project.utils;
 
+import com.alibaba.fastjson.JSONObject;
+import com.project.rest.RestResponse;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -187,5 +192,25 @@ public class FunctionUtils {
             val = new ArrayList<T>();
         }
         return val;
+    }
+
+    /**
+     * 返回信息给客户端
+     * @param response
+     * @param restResponse
+     * @return
+     */
+    public static  void responseMessage(HttpServletResponse response, RestResponse restResponse) {
+        PrintWriter out = null;
+        try {
+            out = response.getWriter();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        response.setContentType("application/json; charset=utf-8");
+        String json = JSONObject.toJSONString(restResponse);
+        out.print(json);
+        out.flush();
+        out.close();
     }
 }

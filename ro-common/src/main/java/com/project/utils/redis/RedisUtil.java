@@ -92,12 +92,17 @@ public class RedisUtil {
         try {
             ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
             operations.set(key, value);
+            // 过期时间单位为秒
             redisTemplate.expire(key, expireTime, TimeUnit.SECONDS);
             result = true;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public RedisTemplate<Serializable, Object> getRedisTemplate() {
+        return redisTemplate;
     }
 
     public void setRedisTemplate(RedisTemplate<Serializable, Object> redisTemplate) {
