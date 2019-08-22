@@ -3,7 +3,6 @@ package com.project.log;
 import com.project.dao.LogMapper;
 import com.project.dto.cms.LoginDto;
 import com.project.entity.Log;
-import com.project.entity.User;
 import com.project.session.CmsSession;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;

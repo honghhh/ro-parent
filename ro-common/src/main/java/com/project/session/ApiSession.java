@@ -1,8 +1,7 @@
 package com.project.session;
 
-import com.project.dto.cms.LoginDto;
+import com.project.dto.api.LoginDto;
 import com.project.entity.Menu;
-import com.project.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;

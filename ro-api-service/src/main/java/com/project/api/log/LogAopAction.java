@@ -1,7 +1,7 @@
 package com.project.api.log;
 
 import com.project.dao.LogMapper;
-import com.project.dto.cms.LoginDto;
+import com.project.dto.api.LoginDto;
 import com.project.entity.Log;
 import com.project.session.ApiSession;
 import org.aspectj.lang.ProceedingJoinPoint;
