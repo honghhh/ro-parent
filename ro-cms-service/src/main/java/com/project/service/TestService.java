@@ -47,8 +47,8 @@ public class TestService {
 
     public void test7(){
         Destination destination = jmsTemplate.getDefaultDestination();
-        producerService.sendMessage(destination, "123123");
-        producerService.sendMessage("123123");
+        producerService.sendMessage(destination, "cms");
+        // producerService.sendMessage("123123");
     }
 
     public void test8(){

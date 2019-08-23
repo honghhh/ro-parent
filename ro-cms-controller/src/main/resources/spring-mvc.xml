@@ -87,16 +87,16 @@
         </mvc:annotation-driven>
 
         <!-- Token拦截器 -->
-        <mvc:interceptors>
+        <!--<mvc:interceptors>
             <mvc:interceptor>
-                <!-- 拦截所有 -->
+                &lt;!&ndash; 拦截所有 &ndash;&gt;
                 <mvc:mapping path="/**" />
-                <!-- 放行请求方法 -->
+                &lt;!&ndash; 放行请求方法 &ndash;&gt;
                 <mvc:exclude-mapping path="/loginPage" />
                 <mvc:exclude-mapping path="/login" />
                 <mvc:exclude-mapping path="/verifyImg" />
                 <mvc:exclude-mapping path="/register" />
-                <!-- 放行静态资源 -->
+                &lt;!&ndash; 放行静态资源 &ndash;&gt;
                 <mvc:exclude-mapping path="/css/**" />
                 <mvc:exclude-mapping path="/js/**" />
                 <mvc:exclude-mapping path="/lib/**" />
@@ -106,16 +106,16 @@
                 <mvc:exclude-mapping path="/views/**" />
                 <bean class="com.project.interceptor.TokenInterceptor" />
             </mvc:interceptor>
-        </mvc:interceptors>
+        </mvc:interceptors>-->
 
         <!-- 菜单拦截器 -->
-        <mvc:interceptors>
+        <!--<mvc:interceptors>
             <mvc:interceptor>
-                <!-- 拦截/user目录下所有方法 -->
+                &lt;!&ndash; 拦截/user目录下所有方法 &ndash;&gt;
                 <mvc:mapping path="/user/**" />
                 <bean class="com.project.interceptor.MenuInterceptor" />
             </mvc:interceptor>
-        </mvc:interceptors>
+        </mvc:interceptors>-->
 
         <!-- 映射访问资源 location放行目录 mapping放行文件 -->
         <mvc:view-controller path="/" view-name="redirect:/loginPage" />

@@ -36,7 +36,7 @@
         <bean id="msgQueue" class="org.apache.activemq.command.ActiveMQQueue">
             <!-- 设置消息队列的名字 -->
             <constructor-arg>
-                <value>order</value>
+                <value>api-order</value>
             </constructor-arg>
         </bean>
 
@@ -52,7 +52,7 @@
         </bean>
 
         <!-- 配置消息队列监听者（Queue） -->
-        <bean id="queueMessageListener" class="com.project.utils.activemq.QueueMessageListener" />
+        <bean id="queueMessageListener" class="com.project.utils.activemq.ApiQueueMessageListener" />
 
         <!-- 显示注入消息监听容器（Queue），配置连接工厂，监听的目标是demoQueueDestination，监听器是上面定义的监听器 -->
         <bean id="queueListenerContainer"
