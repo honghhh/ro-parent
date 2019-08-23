@@ -110,4 +110,23 @@ public class TestController {
         return GetRest.getSuccess("成功", list);
     }
 
+    /**
+     * 测试消息队列 消息发送
+     */
+    @RequestMapping(value = "/test7")
+    @ResponseBody
+    public RestResponse test7() {
+        testService.test7();
+        return GetRest.getSuccess("成功");
+    }
+
+    /**
+     * 测试消息队列 消息接受使用监听器QueueMessageListener
+     */
+    @RequestMapping(value = "/test8")
+    @ResponseBody
+    public RestResponse test8() {
+        testService.test8();
+        return GetRest.getSuccess("成功");
+    }
 }

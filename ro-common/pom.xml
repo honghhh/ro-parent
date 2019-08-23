@@ -402,7 +402,7 @@
         </dependency>
 
         <!-- 消息队列 -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-broker</artifactId>
             <version>5.14.5</version>
@@ -436,7 +436,7 @@
             <groupId>org.apache.geronimo.specs</groupId>
             <artifactId>geronimo-jta_1.0.1B_spec</artifactId>
             <version>1.0</version>
-        </dependency>
+        </dependency>-->
 
         <!-- Java消息中间件 -->
         <dependency>
@@ -483,7 +483,7 @@
             <version>1.59</version>
         </dependency>
 
-        <!--引入JWT依赖,由于是基于Java，所以需要的是java-jwt-->
+        <!-- 引入JWT依赖,由于是基于Java，所以需要的是java-jwt -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
@@ -495,7 +495,7 @@
             <version>3.4.0</version>
         </dependency>
 
-        <!--redis-->
+        <!-- redis -->
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-redis</artifactId>
@@ -505,6 +505,18 @@
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
             <version>2.7.3</version>
+        </dependency>
+
+        <!-- activemq -->
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-core</artifactId>
+            <version>5.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-pool</artifactId>
+            <version>5.12.1</version>
         </dependency>
 
     </dependencies>
