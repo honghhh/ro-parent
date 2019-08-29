@@ -101,6 +101,6 @@ public class LoginService {
         }
         // 写入token到cookie 页面请求自动携带cookie
         CookiesUtil.setCookie(response, "token", uuid);
-        return GetRest.getSuccess("登录成功");
+        return GetRest.getSuccess("登录成功", uuid);
     }
 }
