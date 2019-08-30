@@ -17,7 +17,7 @@ body {
   /* IE10+ */
   /*background: -webkit-linear-gradient(315deg, #EA5C54 0%, #bb6dec 100%);*/
   /*background: linear-gradient(135deg, #EA5C54 0%, #bb6dec 100%);*/
-  background:url(../img/bgimage.jpg) no-repeat center 100% fixed;
+  background:url(/images/login/bgimage.jpg) no-repeat center 100% fixed;
   /*background-size: 100%;*/
  /*background-size: auto;*/
   /* W3C */

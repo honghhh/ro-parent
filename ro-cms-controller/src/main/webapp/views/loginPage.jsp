@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>用户登录</title>
     <link href="http://cdn.bootcss.com/jqueryui/1.11.0/jquery-ui.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/static/login/css/default.css">
-    <link rel="stylesheet" type="text/css" href="/static/login/css/styles.css">
-    <link rel="stylesheet" type="text/css" href="/static/login/css/login.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/login/default.css">
+    <link rel="stylesheet" type="text/css" href="/css/login/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/login/login.css"/>
 </head>
 <body>
 <div class='login' id="login">
@@ -19,29 +19,29 @@
     <div class='login_fields'>
         <div class='login_fields__user'>
             <div class='icon'>
-                <img src='/static/login/img/user_icon_copy.png'>
+                <img src='/images/login/user_icon_copy.png'>
             </div>
             <input placeholder='用户名' type='text' id="userName" class="action">
             <div class='validation'>
-                <img src='/static/login/img/tick.png'>
+                <img src='/images/login/tick.png'>
             </div>
             </input>
         </div>
         <div class='login_fields__password'>
             <div class='icon'>
-                <img src='/static/login/img/lock_icon_copy.png'>
+                <img src='/images/login/lock_icon_copy.png'>
             </div>
             <input placeholder='密码' type='password' id="passWord" class="action">
             <div class='validation'>
-                <img src='/static/login/img/tick.png'>
+                <img src='/images/login/tick.png'>
             </div>
         </div>
         <div class='login_fields__submit d1' id="login_buttom">
             <input type='button' id="login_button_submit" value='登录' class="box shake">
-            <%--<div class='forgot'>
+            <div class='forgot'>
                 <a href='javascript:void(0)' onclick="siginA()">注册</a>&nbsp;&nbsp;
                 <a href='#'>忘记密码?</a>
-            </div>--%>
+            </div>
         </div>
     </div>
     <div class='success'>
@@ -60,26 +60,26 @@
     <div class='login_fields'>
         <div class='login_fields__user'>
             <div class='icon'>
-                <img src='/static/login/img/user_icon_copy.png'>
+                <img src='/images/login/user_icon_copy.png'>
             </div>
             <input placeholder='用户名' type='text' id="userName_sgin" class="action">
             <div class='validation'>
-                <img src='/static/login/img/tick.png'>
+                <img src='/images/login/tick.png'>
             </div>
             </input>
         </div>
         <div class='login_fields__password'>
             <div class='icon'>
-                <img src='/static/login/img/lock_icon_copy.png'>
+                <img src='/images/login/lock_icon_copy.png'>
             </div>
             <input placeholder='密码' type='password' id="passWord_sgin" class="action">
             <div class='validation'>
-                <img src='/static/login/img/tick.png'>
+                <img src='/images/login/tick.png'>
             </div>
         </div>
         <div class='login_fields__password'>
             <div class='icon'>
-                <img src='/static/login/img/lock_icon_copy.png'>
+                <img src='/images/login/lock_icon_copy.png'>
             </div>
             <input placeholder='验证码' type='text' id="code">
             <img class="validation2" onclick="javascript:document.getElementById('codeimage').src='/verifyImg?t=' + Math.random();"
@@ -101,12 +101,12 @@
     </div>
 </div>
 <div class='authent'>
-    <img src='/static/login/img/puff.svg'>
+    <img src='/images/login/puff.svg'>
     <p>登录中...</p>
 </div>
-<script src='/static/login/js/stopExecutionOnTimeout.js?t=1'></script>
-<script src="/static/login/js/jquery-2.1.1.min.js"></script>
+<script src='/js/login/stopExecutionOnTimeout.js?t=1'></script>
+<script src="/js/login/jquery-2.1.1.min.js"></script>
 <script src="http://cdn.bootcss.com/jqueryui/1.11.0/jquery-ui.min.js"></script>
-<script src="/js/login.js"></script>
+<script src="/js/login/login.js"></script>
 </body>
 </html>
