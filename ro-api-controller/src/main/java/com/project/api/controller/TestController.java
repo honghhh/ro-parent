@@ -128,4 +128,34 @@ public class TestController {
         testService.test8();
         return GetRest.getSuccess("成功");
     }
+
+    /**
+     * vue测试接口 用户列表
+     */
+    @RequestMapping(value = "/user/userlist")
+    @ResponseBody
+    public RestResponse userlist(){
+        RestResponse result = testService.test9();
+        return result;
+    }
+
+    /**
+     * vue测试接口 新增/修改
+     */
+    @RequestMapping(value = "/user/submit")
+    @ResponseBody
+    public RestResponse submit(Integer id, String login, String password){
+        RestResponse result = testService.test10(id, login, password);
+        return result;
+    }
+
+    /**
+     * vue测试接口 删除
+     */
+    @RequestMapping(value = "/user/delete")
+    @ResponseBody
+    public RestResponse delete(Integer id){
+        RestResponse result = testService.test11(id);
+        return result;
+    }
 }
