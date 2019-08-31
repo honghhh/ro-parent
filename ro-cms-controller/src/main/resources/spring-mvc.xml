@@ -96,6 +96,7 @@
                 <mvc:exclude-mapping path="/login" />
                 <mvc:exclude-mapping path="/verifyImg" />
                 <mvc:exclude-mapping path="/register" />
+                <mvc:exclude-mapping path="/logout" />
                 <!-- 放行静态资源 -->
                 <mvc:exclude-mapping path="/css/**" />
                 <mvc:exclude-mapping path="/js/**" />
