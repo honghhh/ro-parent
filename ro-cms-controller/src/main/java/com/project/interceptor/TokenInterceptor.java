@@ -30,9 +30,6 @@ public class TokenInterceptor implements HandlerInterceptor {
      * 从最后一个拦截器往回执行所有的postHandle()
      * 接着再从最后一个拦截器往回执行所有的afterCompletion()
      */
-    @Autowired
-    private UserMapper userMapper;
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // 获取token
