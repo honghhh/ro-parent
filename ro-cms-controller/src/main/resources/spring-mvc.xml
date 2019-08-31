@@ -111,6 +111,7 @@
         <mvc:interceptors>
             <mvc:interceptor>
                 <!-- 拦截/user目录下所有方法 -->
+                <mvc:mapping path="/plat/**" />
                 <mvc:mapping path="/user/**" />
                 <bean class="com.project.interceptor.MenuInterceptor" />
             </mvc:interceptor>
