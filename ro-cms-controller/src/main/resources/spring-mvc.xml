@@ -99,11 +99,9 @@
                 <!-- 放行静态资源 -->
                 <mvc:exclude-mapping path="/css/**" />
                 <mvc:exclude-mapping path="/js/**" />
-                <mvc:exclude-mapping path="/lib/**" />
-                <mvc:exclude-mapping path="/static/**" />
                 <mvc:exclude-mapping path="/images/**" />
-                <mvc:exclude-mapping path="/ueditor/**" />
                 <mvc:exclude-mapping path="/views/**" />
+                <mvc:exclude-mapping path="/layuiadmin/**" />
                 <bean class="com.project.interceptor.TokenInterceptor" />
             </mvc:interceptor>
         </mvc:interceptors>
@@ -123,6 +121,7 @@
         <mvc:resources mapping="/js/**" location="/js/" />
         <mvc:resources mapping="/images/**" location="/images/" />
         <mvc:resources mapping="/views/**" location="/views/" />
+        <mvc:resources mapping="/layuiadmin/**" location="/layuiadmin/"/>
 
         <!-- springmvc文件上传编码格式 -->
         <bean id="multipartResolver"
