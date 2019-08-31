@@ -23,7 +23,7 @@ public class MappingUtil {
     /** 页面 - 欢迎页 */
     public static final String SHOW_WELCOME = "/plat/welcome";
 
-    /** 退出登录 */
+    /** 操作 - 退出登录 */
     public static final String LOGOUT = "/logout";
 
 }
