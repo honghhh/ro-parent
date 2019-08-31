@@ -44,7 +44,9 @@ public class MenuInterceptor implements HandlerInterceptor {
             // 获取请求路径
             String returnUrl = String.valueOf(request.getServletPath());
             List<String> strs = CmsSession.getMenuUrlList(request);
-            // strs.add(MappingUtil.verifyImg);
+            // 登录了补充通用菜单 因为通用菜单不存入菜单表里
+            strs.add(MappingUtil.SHOW_INDEX);
+            strs.add(MappingUtil.SHOW_WELCOME);
             boolean bool = strs.contains(returnUrl);
             //如果是ajax请求
             if ("XMLHttpRequest".equalsIgnoreCase(type)) {

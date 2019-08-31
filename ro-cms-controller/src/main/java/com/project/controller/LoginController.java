@@ -81,4 +81,16 @@ public class LoginController {
         RestResponse result = loginService.register(request, userName, passWord, code);
         return result;
     }
+
+    /**
+     * 退出登录
+     * @return
+     */
+    @RequestMapping(value = MappingUtil.LOGOUT)
+    @ResponseBody
+    public ModelAndView logout(HttpServletRequest request){
+        CmsSession.exit(request);
+        ModelAndView view = new ModelAndView(MappingUtil.SHOW_LOGIN);
+        return view;
+    }
 }

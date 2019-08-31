@@ -16,4 +16,15 @@ public class MappingUtil {
 
     /** 操作 - 注册 */
     public static final String REGISTER = "/register";
+
+    /** 页面 - 首页 */
+    public static final String SHOW_INDEX = "/plat/index";
+
+    /** 页面 - 欢迎页 */
+    public static final String SHOW_WELCOME = "/plat/welcome";
+
+    /** 退出登录 */
+    public static final String LOGOUT = "/logout";
+
+
 }
