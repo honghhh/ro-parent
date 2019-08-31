@@ -64,15 +64,15 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <!--<filter>-->
-        <!--<filter-name>XssSqlFilter</filter-name>-->
-        <!--<filter-class>com.gas.common.xss.XssFilter</filter-class>-->
-    <!--</filter>-->
-    <!--<filter-mapping>-->
-        <!--<filter-name>XssSqlFilter</filter-name>-->
-        <!--<url-pattern>/*</url-pattern>-->
-        <!--<dispatcher>REQUEST</dispatcher>-->
-    <!--</filter-mapping>-->
+    <filter>
+        <filter-name>XssSqlFilter</filter-name>
+        <filter-class>com.project.utils.xss.XssFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>XssSqlFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
 
     <servlet-mapping>
         <servlet-name>default</servlet-name>

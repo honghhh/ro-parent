@@ -81,15 +81,15 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <!--<filter>-->
-    <!--<filter-name>XssSqlFilter</filter-name>-->
-    <!--<filter-class>com.gas.common.xss.XssFilter</filter-class>-->
-    <!--</filter>-->
-    <!--<filter-mapping>-->
-    <!--<filter-name>XssSqlFilter</filter-name>-->
-    <!--<url-pattern>/*</url-pattern>-->
-    <!--<dispatcher>REQUEST</dispatcher>-->
-    <!--</filter-mapping>-->
+    <filter>
+        <filter-name>XssSqlFilter</filter-name>
+        <filter-class>com.project.utils.xss.XssFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>XssSqlFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
 
     <servlet-mapping>
         <servlet-name>default</servlet-name>
@@ -98,7 +98,7 @@
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
-    <!--<error-page>
+    <error-page>
         <error-code>400</error-code>
         <location>/views/400.html</location>
     </error-page>
@@ -109,7 +109,7 @@
     <error-page>
         <error-code>500</error-code>
         <location>/views/500.html</location>
-    </error-page>-->
+    </error-page>
     <!-- session  过期时间为2小时 -->
     <session-config>
         <session-timeout>360</session-timeout>
