@@ -6,14 +6,14 @@ package com.project.utils;
 public class MappingUtil {
 
     /** 登录页 */
-    public static final String login_page = "/loginPage";
+    public static final String SHOW_LOGIN = "/showLogin";
 
     /** 登录 */
-    public static final String login = "/login";
+    public static final String LOGIN = "/login";
 
     /** 验证码 */
-    public static final String verifyImg = "/verifyImg";
+    public static final String VERIFY_IMG = "/verifyImg";
 
     /** 注册 */
-    public static final String register = "/register";
+    public static final String REGISTER = "/register";
 }

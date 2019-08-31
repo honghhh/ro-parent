@@ -26,9 +26,9 @@ public class LoginController {
      * 登录页
      * @return
      */
-    @RequestMapping(value = MappingUtil.login_page)
-    public ModelAndView loginPage(){
-        ModelAndView view = new ModelAndView(MappingUtil.login_page);
+    @RequestMapping(value = MappingUtil.SHOW_LOGIN)
+    public ModelAndView showLogin(){
+        ModelAndView view = new ModelAndView(MappingUtil.SHOW_LOGIN);
         return view;
     }
 
@@ -38,7 +38,7 @@ public class LoginController {
      * @param passWord 密码
      * @return
      */
-    @RequestMapping(value = MappingUtil.login)
+    @RequestMapping(value = MappingUtil.LOGIN)
     @ResponseBody
     public RestResponse login(HttpServletRequest request, HttpServletResponse response, String userName, String passWord){
         RestResponse result = loginService.login(request, response, userName, passWord);
@@ -51,7 +51,7 @@ public class LoginController {
      * @param response 返回对象
      * @return
      */
-    @RequestMapping(value = MappingUtil.verifyImg)
+    @RequestMapping(value = MappingUtil.VERIFY_IMG)
     public void verifyImg(HttpServletRequest request, HttpServletResponse response) {
         try {
             // 创建验证码对象
@@ -75,7 +75,7 @@ public class LoginController {
      * @param code 验证码
      * @return
      */
-    @RequestMapping(value = MappingUtil.register)
+    @RequestMapping(value = MappingUtil.REGISTER)
     @ResponseBody
     public RestResponse register(HttpServletRequest request, String userName, String passWord, String code) {
         RestResponse result = loginService.register(request, userName, passWord, code);

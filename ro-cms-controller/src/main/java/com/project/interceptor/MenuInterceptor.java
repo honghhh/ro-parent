@@ -37,7 +37,7 @@ public class MenuInterceptor implements HandlerInterceptor {
             if ("XMLHttpRequest".equalsIgnoreCase(type)) {
                 response.setHeader("sessionstatus", "timeout");
             } else {
-                response.sendRedirect(MappingUtil.login);
+                response.sendRedirect(MappingUtil.LOGIN);
             }
             return false;
         } else {

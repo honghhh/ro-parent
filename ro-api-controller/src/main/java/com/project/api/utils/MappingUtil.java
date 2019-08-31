@@ -6,5 +6,5 @@ package com.project.api.utils;
 public class MappingUtil {
 
     /** 登录 */
-    public static final String login = "/login";
+    public static final String LOGIN = "/login";
 }

@@ -163,7 +163,7 @@ function sigin() {
             console.log(res)
             if(res.status) {
                 $("#span_sigin").html("注册成功")
-                window.location = "/loginPage";
+                window.location = "/showLogin";
             } else {
                 $("#span_sigin").html(res.desc)
                 $('#codeimage').click();
