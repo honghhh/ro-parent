@@ -5,15 +5,15 @@ package com.project.utils;
  */
 public class MappingUtil {
 
-    /** 登录页 */
+    /** 页面 - 登录 */
     public static final String SHOW_LOGIN = "/showLogin";
 
-    /** 登录 */
+    /** 操作 - 登录 */
     public static final String LOGIN = "/login";
 
-    /** 验证码 */
+    /** 接口 - 验证码 */
     public static final String VERIFY_IMG = "/verifyImg";
 
-    /** 注册 */
+    /** 操作 - 注册 */
     public static final String REGISTER = "/register";
 }
