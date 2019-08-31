@@ -26,5 +26,4 @@ public class MappingUtil {
     /** 退出登录 */
     public static final String LOGOUT = "/logout";
 
-
 }
