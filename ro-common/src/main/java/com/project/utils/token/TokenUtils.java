@@ -31,7 +31,7 @@ public class TokenUtils {
 			Cookie[] cookies = request.getCookies();
 			if(cookies != null) {
 				for (Cookie cookie : cookies) {
-					if (token.equals(cookie.getName())) {
+					if ("token".equals(cookie.getName())) {
 						token = cookie.getValue() ;
 						return token ;
 					}
