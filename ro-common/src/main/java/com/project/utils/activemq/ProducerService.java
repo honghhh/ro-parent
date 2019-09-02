@@ -11,7 +11,9 @@ import javax.jms.Message;
 import javax.jms.Session;
 
 /**
- * activemq消息发送者
+ * @description activemq消息发送者
+ * @author: huangh
+ * @since 2019-09-02 15:45
  */
 @Service
 public class ProducerService {
@@ -28,6 +30,7 @@ public class ProducerService {
     public void sendMessage(Destination destination, final String msg) {
         System.out.println(Thread.currentThread().getName() + " 向队列" + destination.toString() + "发送消息---------------------->" + msg);
         jmsTemplate.send(destination, new MessageCreator() {
+            @Override
             public Message createMessage(Session session) throws JMSException {
                 return session.createTextMessage(msg);
             }
@@ -43,6 +46,7 @@ public class ProducerService {
         Destination destination = jmsTemplate.getDefaultDestination();
         System.out.println(Thread.currentThread().getName() + " 向队列" + destination.toString() + "发送消息---------------------->" + msg);
         jmsTemplate.send(new MessageCreator() {
+            @Override
             public Message createMessage(Session session) throws JMSException {
                 return session.createTextMessage(msg);
             }

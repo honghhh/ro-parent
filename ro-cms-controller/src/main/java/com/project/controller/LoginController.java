@@ -16,6 +16,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+/**
+ * @description 登录Handle
+ * @author: huangh
+ * @since 2019-09-02 15:17
+ */
 @Controller
 public class LoginController {
 
@@ -24,7 +29,7 @@ public class LoginController {
 
     /**
      * 登录页
-     * @return
+     * @return org.springframework.web.servlet.ModelAndView
      */
     @RequestMapping(value = MappingUtils.SHOW_LOGIN)
     public ModelAndView showLogin(){
@@ -34,9 +39,11 @@ public class LoginController {
 
     /**
      * 登录
+     * @param request 请求对象
+     * @param response 返回对象
      * @param userName 账号
      * @param passWord 密码
-     * @return
+     * @return com.project.rest.RestResponse
      */
     @RequestMapping(value = MappingUtils.LOGIN)
     @ResponseBody
@@ -49,7 +56,7 @@ public class LoginController {
      * 获取验证码图片
      * @param request 请求对象
      * @param response 返回对象
-     * @return
+     * @return void
      */
     @RequestMapping(value = MappingUtils.VERIFY_IMG)
     public void verifyImg(HttpServletRequest request, HttpServletResponse response) {
@@ -73,7 +80,7 @@ public class LoginController {
      * @param userName 账号
      * @param passWord 密码
      * @param code 验证码
-     * @return
+     * @return com.project.rest.RestResponse
      */
     @RequestMapping(value = MappingUtils.REGISTER)
     @ResponseBody
@@ -84,7 +91,8 @@ public class LoginController {
 
     /**
      * 退出登录
-     * @return
+     * @param request 请求对象
+     * @return org.springframework.web.servlet.ModelAndView
      */
     @RequestMapping(value = MappingUtils.LOGOUT)
     @ResponseBody

@@ -8,6 +8,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * @description 时间工具类
+ * @author: huangh
+ * @since 2019-09-02 15:55
+ */
 public class DateUtil {
 
     /**
@@ -25,7 +30,11 @@ public class DateUtil {
      */
     public static final String DEFAULT_DATEDETAIL_PATTERN = "yyyy-MM-dd HH:mm:ss SSS";
 
+    /**
+     * 默认时间戳格式，到毫秒 yyyyMMddHHmmss
+     */
     public static final String DEFAULT_DATEDETAIL = "yyyyMMddHHmmss";
+
     /**
      * 1天折算成毫秒数
      */
@@ -44,7 +53,6 @@ public class DateUtil {
 
     /**
      * 取得当前系统日期
-     *
      * @return
      */
     public static java.util.Date currentDate() {
@@ -53,7 +61,6 @@ public class DateUtil {
 
     /**
      * 取得当前系统时间
-     *
      * @return
      */
     public static long currentTimeMillis() {
@@ -62,7 +69,6 @@ public class DateUtil {
 
     /**
      * 取得系统当前日期，返回默认日期格式的字符串。
-     *
      * @param strFormat
      * @return
      */
@@ -71,19 +77,16 @@ public class DateUtil {
         return getDateParser(strFormat).format(date);
     }
 
-
     /**
      * 取得当前系统时间戳
-     *
      * @return
      */
     public static Timestamp currentTimestamp() {
-        return new Timestamp(new Date().getTime());
+        return new Timestamp(System.currentTimeMillis());
     }
 
     /**
      * 将日期字符串转换为java.util.Date对象
-     *
      * @param dateString
      * @param pattern    日期格式
      * @return
@@ -101,7 +104,6 @@ public class DateUtil {
 
     /**
      * 将日期字符串转换为java.util.Date对象，使用默认日期格式
-     *
      * @param dateString
      * @return
      * @throws Exception
@@ -116,7 +118,6 @@ public class DateUtil {
 
     /**
      * 将时间字符串转换为java.util.Date对象
-     *
      * @param dateString
      * @return
      * @throws Exception
@@ -127,7 +128,6 @@ public class DateUtil {
 
     /**
      * 将java.util.Date对象转换为字符串
-     *
      * @param date
      * @param pattern
      * @return
@@ -138,7 +138,6 @@ public class DateUtil {
 
     /**
      * 将java.util.Date对象转换为字符串，使用默认日期格式
-     *
      * @param date
      * @return
      */
@@ -148,7 +147,6 @@ public class DateUtil {
 
     /**
      * 将java.util.Date对象转换为时间字符串，使用默认日期格式
-     *
      * @param date
      * @return
      */
@@ -158,7 +156,6 @@ public class DateUtil {
 
     /**
      * 日期相减
-     *
      * @param date
      * @param day
      * @return
@@ -171,7 +168,6 @@ public class DateUtil {
 
     /**
      * 返回毫秒
-     *
      * @param date 日期
      * @return 返回毫秒
      * @author doumingjun create 2007-04-07
@@ -182,10 +178,8 @@ public class DateUtil {
         return c.getTimeInMillis();
     }
 
-
     /**
      * 日期相加
-     *
      * @param date 日期
      * @param day  天数
      * @return 返回相加后的日期
@@ -216,7 +210,6 @@ public class DateUtil {
 
     /**
      * 获取当前日期是星期几<br>
-     *
      * @param dt
      * @return 当前日期是星期几
      */
@@ -225,14 +218,14 @@ public class DateUtil {
         Calendar cal = Calendar.getInstance();
         cal.setTime(dt);
         int w = cal.get(Calendar.DAY_OF_WEEK) - 1;
-        if (w < 0)
+        if (w < 0) {
             w = 0;
+        }
         return weekDays[w];
     }
 
     /**
      * 日期相减，获取对应的天数
-     *
      * @return
      */
     public static long getDaySub(Date bginDate, Date endDate) {
@@ -245,8 +238,8 @@ public class DateUtil {
         }
         return day;
     }
+
     /**
-     *
      * 获取时间向后退n小时
      * @param date 目标时间
      * @param n 小时
@@ -258,7 +251,6 @@ public class DateUtil {
     }
 
     /**
-     *
      * 获取时间向后退n分钟
      * @param date 目标时间
      * @param n 分钟
@@ -268,6 +260,7 @@ public class DateUtil {
     public static long getDateTimeAddMinute(Date date,int n) {
         return date.getTime() + n * 60 * 1000;
     }
+
     /**
      * @param @param  n
      * @param @return 设定文件
@@ -280,10 +273,8 @@ public class DateUtil {
         return Calendar.getInstance().getTimeInMillis() + n * 1000 * 60;
     }
 
-
     /**
      * 获取下周当前星期日期
-     *
      * @param count
      * @param pattern
      * @return
@@ -291,7 +282,7 @@ public class DateUtil {
     public static String getNextMonday(int count, String pattern) {
 
         Calendar strDate = Calendar.getInstance();
-        strDate.add(strDate.DATE, count);
+        strDate.add(Calendar.DATE, count);
 
         //System.out.println(strDate.getTime());
         GregorianCalendar currentDate = new GregorianCalendar();
@@ -304,7 +295,6 @@ public class DateUtil {
 
     /**
      * 获取当前星期的日期
-     *
      * @param weekDay
      * @return
      */
@@ -325,7 +315,6 @@ public class DateUtil {
 
     /**
      * 将int型时间(1970年至今的秒数)转换成Date型时间
-     *
      * @param unixTime 1970年至今的秒数
      * @return
      */
@@ -335,7 +324,6 @@ public class DateUtil {
 
     /**
      * 计算距离到当前时间多少天 小时 分钟
-     *
      * @param endDate
      * @return
      */
@@ -374,7 +362,6 @@ public class DateUtil {
 
     /**
      * 根据时间段获取日期
-     *
      * @param s1
      * @param s2
      * @return
@@ -387,7 +374,8 @@ public class DateUtil {
         Date begin = sdf.parse(s1);
         Date end = sdf.parse(s2);
 
-        double between = (end.getTime() - begin.getTime()) / 1000;//除以1000是为了转换成秒
+        // 除以1000是为了转换成秒
+        double between = (end.getTime() - begin.getTime()) / 1000;
         double day = between / (24 * 3600);
         for (int i = 0; i <= day; i++) {
 
@@ -401,7 +389,6 @@ public class DateUtil {
 
     /**
      * 当月最后一天
-     *
      * @param date
      * @return
      */
@@ -420,7 +407,6 @@ public class DateUtil {
 
     /**
      * 当月最后一天
-     *
      * @param date
      * @return
      */
@@ -437,11 +423,9 @@ public class DateUtil {
         return lastDate;
     }
 
-
     /**
      * 获取当月日期组
      * 如： 1月 {2018.1.1,2018.1.2 ... 2018.1.31}
-     *
      * @return
      */
     public static List<Date> getAllTheDateOftheMonth() {
@@ -457,6 +441,7 @@ public class DateUtil {
         }
         return list;
     }
+
     /**
      * java获取 当月所有的日期集合
      * @return
@@ -464,8 +449,10 @@ public class DateUtil {
     public static List<String> getDayListOfMonth() {
         List<String> list = new ArrayList<String>();
         Calendar aCalendar = Calendar.getInstance(Locale.CHINA);
-        int year = aCalendar.get(Calendar.YEAR);//年份
-        int month = aCalendar.get(Calendar.MONTH) + 1;//月份
+        // 年份
+        int year = aCalendar.get(Calendar.YEAR);
+        // 月份
+        int month = aCalendar.get(Calendar.MONTH) + 1;
         int day = aCalendar.getActualMaximum(Calendar.DATE);
         String monthStr="0";
         if(month<10){
@@ -486,6 +473,7 @@ public class DateUtil {
         }
         return list;
     }
+
     public static int getLocalweek(Date date) {
         int weekOfMonth = 1;
         try {
@@ -521,42 +509,49 @@ public class DateUtil {
         return num;
     }
 
-
     public static String dateDiff(long startTime, long endTime) {
-        //按照传入的格式生成一个simpledateformate对象
-        long nd = 1000 * 24 * 60 * 60;//一天的毫秒数
-        long nh = 1000 * 60 * 60;//一小时的毫秒数
-        long nm = 1000 * 60;//一分钟的毫秒数
-        //获得两个时间的毫秒时间差异
+        // 按照传入的格式生成一个simpledateformate对象
+        // 一天的毫秒数
+        long nd = 1000 * 24 * 60 * 60;
+        // 一小时的毫秒数
+        long nh = 1000 * 60 * 60;
+        // 一分钟的毫秒数
+        long nm = 1000 * 60;
+        // 获得两个时间的毫秒时间差异
         String msg = "0天0小时0分钟";
         if (endTime >= startTime) {
             long diff = endTime - startTime;
-            long day = diff / nd;//计算差多少天
-            long hour = diff % nd / nh;//计算差多少小时
-            long min = diff % nd % nh / nm;//计算差多少分钟
+            // 计算差多少天
+            long day = diff / nd;
+            // 计算差多少小时
+            long hour = diff % nd / nh;
+            // 计算差多少分钟
+            long min = diff % nd % nh / nm;
             msg = day + "天" + hour + "小时" + min + "分钟";
         }
         return msg;
     }
 
-
     public static long dateMinus(long startTime, long endTime) {
-        //按照传入的格式生成一个simpledateformate对象
-        long nd = 1000 * 24 * 60 * 60;//一天的毫秒数
-        long nh = 1000 * 60 * 60;//一小时的毫秒数
-        long nm = 1000 * 60;//一分钟的毫秒数
+        // 按照传入的格式生成一个simpledateformate对象
+        // 一天的毫秒数
+        long nd = 1000 * 24 * 60 * 60;
+        // 一小时的毫秒数
+        long nh = 1000 * 60 * 60;
+        // 一分钟的毫秒数
+        long nm = 1000 * 60;
         long min = 0;
-        //获得两个时间的毫秒时间差异
+        // 获得两个时间的毫秒时间差异
         if (endTime >= startTime) {
             long diff = endTime - startTime;
-            min = diff / nm;//计算差多少分钟
+            // 计算差多少分钟
+            min = diff / nm;
         }
         return min;
     }
 
     /**
      * 加上月份
-     *
      * @param date
      * @param month
      * @return
@@ -570,7 +565,6 @@ public class DateUtil {
 
     /**
      * 获取当月最后一天
-     *
      * @param date
      * @return
      */
@@ -583,10 +577,8 @@ public class DateUtil {
         return calendar.getTime();
     }
 
-
     /**
      * 分割时间段获取日期
-     *
      * @param dateStr 时间段字符串 如：2018-03-27 ~ 2018-03-28
      * @param regex   分隔符 如：~
      * @param pattern 时间格式
@@ -604,7 +596,6 @@ public class DateUtil {
 
     /**
      * 获取当日的起始时间
-     *
      * @return
      * @author WahYee
      * @date 2018年3月31日 下午2:06:40
@@ -621,7 +612,6 @@ public class DateUtil {
 
     /**
      * 获取当日结束时间
-     *
      * @return
      * @author WahYee
      * @date 2018年3月31日 下午2:05:55
@@ -638,7 +628,6 @@ public class DateUtil {
 
     /**
      * 获取当月开始时间
-     *
      * @param date
      * @return
      * @author WahYee
@@ -658,7 +647,6 @@ public class DateUtil {
 
     /**
      * 获取当月的结束时间
-     *
      * @param date
      * @return
      * @author WahYee
@@ -677,7 +665,6 @@ public class DateUtil {
 
     /**
      * 获取当年的开始时间
-     *
      * @param date
      * @return
      * @author WahYee
@@ -694,7 +681,6 @@ public class DateUtil {
 
     /**
      * 获取当年的结束时间
-     *
      * @param date
      * @return
      * @author WahYee
@@ -734,7 +720,6 @@ public class DateUtil {
 
     /**
      * 判断该日期是否是该月的最后一天
-     *
      * @return
      */
     public static boolean isLastDayOfMonth() {
@@ -744,10 +729,8 @@ public class DateUtil {
                 .getActualMaximum(Calendar.DAY_OF_MONTH);
     }
 
-
     /**
      * 根据年月获取当前月的每一天日期
-     *
      * @param yearParam
      * @param monthParam
      * @return
@@ -773,7 +756,6 @@ public class DateUtil {
             if (month >= 10 && i >= 10) {
                 aDate = String.valueOf(year) + "-" + month + "-" + i;
             }
-
             list.add(aDate);
         }
         return list;
@@ -781,7 +763,6 @@ public class DateUtil {
 
     /**
      * 获取两个日期之间的所有日期
-     *
      * @param startTime 开始日期
      * @param endTime   结束日期
      * @return
@@ -804,22 +785,20 @@ public class DateUtil {
                 days.add(dateFormat.format(tempStart.getTime()));
                 tempStart.add(Calendar.DAY_OF_YEAR, 1);
             }
-
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
         return days;
     }
+
     /**
      * 获取两个日期之间的所有日期 不包含结束
-     *
      * @param startTime 开始日期
      * @param endTime   结束日期
      * @param flag 是否包含结束 true 包含 false 不包含
      * @return
      */
-    public static List<String> getDays(String startTime, String endTime,boolean flag) {
+    public static List<String> getDays(String startTime, String endTime, boolean flag) {
         // 返回的日期集合
         List<String> days = new ArrayList<String>();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -833,9 +812,11 @@ public class DateUtil {
             Calendar tempEnd = Calendar.getInstance();
             tempEnd.setTime(end);
             if(flag) {
-                tempEnd.add(Calendar.DATE, +1);// 日期加1(包含结束)
+                // 日期加1(包含结束)
+                tempEnd.add(Calendar.DATE, +1);
             }else{
-                tempEnd.add(Calendar.DATE,0);// 日期加0(不包含结束)
+                // 日期加0(不包含结束)
+                tempEnd.add(Calendar.DATE, 0);
             }
             while (tempStart.before(tempEnd)) {
                 days.add(dateFormat.format(tempStart.getTime()));
@@ -845,7 +826,6 @@ public class DateUtil {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
         return days;
     }
 
@@ -874,6 +854,7 @@ public class DateUtil {
         date = calendar.getTime();
         return date;
     }
+
     /**
      * 获取当前时间前30天
      * @param date 当前时间
@@ -887,10 +868,8 @@ public class DateUtil {
         return date;
     }
 
-
     public static void main(String[] args) {
         long successDay = DateUtil.getDaySub(toDate("2019-04-08"),currentDate());
         System.out.println("day:"+successDay);
-
     }
 }

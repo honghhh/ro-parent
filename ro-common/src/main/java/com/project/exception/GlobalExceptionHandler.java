@@ -1,9 +1,6 @@
 package com.project.exception;
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.alibaba.fastjson.JSONException;
 import com.project.rest.GetRest;
 import com.project.rest.RestResponse;
 import org.springframework.http.HttpStatus;
@@ -13,10 +10,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson.JSONException;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 /**
- * 全局异常处理
+ * @description 全局异常类
+ * @author: huangh
+ * @since 2019-09-02 15:41
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {

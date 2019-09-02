@@ -1,7 +1,9 @@
 package com.project.api.utils;
 
 /**
- * 地址映射工具类
+ * @description 地址映射工具类
+ * @author: huangh
+ * @since 2019-09-02 15:02
  */
 public class MappingUtils {
 

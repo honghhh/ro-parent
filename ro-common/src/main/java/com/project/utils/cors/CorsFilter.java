@@ -8,12 +8,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 跨域过滤器
+ * @description 跨域过滤器
+ * @author: huangh
+ * @since 2019-09-02 15:47
  */
 @Component
 public class CorsFilter implements Filter {
 
-    // 存放跨域的白名单
+    /** 存放跨域的白名单 */
     private String[] permitUrl;
 
     @Override
@@ -42,8 +44,7 @@ public class CorsFilter implements Filter {
         chain.doFilter(req, res);
     }
 
-
-    // 初始化方法，这里的permitUrl是在web.xml中配置的
+    /** 初始化方法，这里的permitUrl是在web.xml中配置的 */
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         String urls = filterConfig.getInitParameter("permitUrl");
@@ -60,7 +61,7 @@ public class CorsFilter implements Filter {
         }
     }
 
-    // 销毁方法
+    /** 销毁方法 */
     @Override
     public void destroy() {
     }

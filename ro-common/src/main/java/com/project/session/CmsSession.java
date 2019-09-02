@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * CmsSession
+ * @description CmsSession
+ * @author: huangh
+ * @since 2019-09-02 15:44
  */
 public class CmsSession {
 

@@ -9,6 +9,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @description Cookie工具类
+ * @author: huangh
+ * @since 2019-09-02 15:47
+ */
 public class CookiesUtil {
 
     public static final int COOKIE_MAX_AGE = 7 * 24 * 3600;
@@ -16,7 +21,6 @@ public class CookiesUtil {
 
     /**
      * 根据Cookie名称得到Cookie对象，不存在该对象则返回Null
-     *
      * @param request
      * @param name
      * @return
@@ -38,7 +42,6 @@ public class CookiesUtil {
 
     /**
      * 根据Cookie名称直接得到Cookie值
-     *
      * @param request
      * @param name
      * @return
@@ -73,7 +76,6 @@ public class CookiesUtil {
 
     /**
      * 添加一条新的Cookie，可以指定过期时间(单位：秒)
-     *
      * @param response
      * @param name
      * @param value
@@ -104,7 +106,6 @@ public class CookiesUtil {
 
     /**
      * 添加一条新的Cookie，默认30分钟过期时间
-     *
      * @param response
      * @param name
      * @param value

@@ -26,6 +26,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * @description 登录业务
+ * @author: huangh
+ * @since 2019-09-02 15:07
+ */
 @Service
 public class LoginService {
 
@@ -40,9 +45,11 @@ public class LoginService {
 
     /**
      * 登录
+     * @param request 请求对象
+     * @param response 返回对象
      * @param userName 账号
      * @param passWord 密码
-     * @return
+     * @return com.project.rest.RestResponse
      */
     public RestResponse login(HttpServletRequest request, HttpServletResponse response, String userName, String passWord) {
         if (StringUtils.isBlank(userName)) {

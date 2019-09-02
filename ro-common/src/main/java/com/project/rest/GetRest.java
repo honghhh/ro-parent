@@ -2,7 +2,12 @@ package com.project.rest;
 
 import java.io.Serializable;
 
+/**
+ * @author: huangh
+ * @since 2019-09-02 15:43
+ */
 public abstract class GetRest implements Serializable {
+
     private static final long serialVersionUID = 4156472221941702383L;
 
     public GetRest() {

@@ -13,6 +13,11 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+/**
+ * @description 首页Handle
+ * @author: huangh
+ * @since 2019-09-02 15:21
+ */
 @Controller
 public class PlatController {
 
@@ -21,7 +26,8 @@ public class PlatController {
 
     /**
      * 首页
-     * @return
+     * @param request 请求对象
+     * @return org.springframework.web.servlet.ModelAndView
      */
     @RequestMapping(value = MappingUtils.SHOW_INDEX)
     public ModelAndView showIndex(HttpServletRequest request){
@@ -35,7 +41,7 @@ public class PlatController {
 
     /**
      * 欢迎页
-     * @return
+     * @return org.springframework.web.servlet.ModelAndView
      */
     @RequestMapping(value = MappingUtils.SHOW_WELCOME)
     public ModelAndView showWelcome(){

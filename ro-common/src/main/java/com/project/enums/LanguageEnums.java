@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 语种
+ * @description 语种
+ * @author: huangh
+ * @since 2019-09-02 15:40
  */
 public enum LanguageEnums {
 

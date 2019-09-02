@@ -1,7 +1,9 @@
 package com.project.utils;
 
 /**
- * 地址映射工具类
+ * @description 地址映射工具类
+ * @author: huangh
+ * @since 2019-09-02 15:21
  */
 public class MappingUtils {
 
@@ -25,5 +27,4 @@ public class MappingUtils {
 
     /** 操作 - 退出登录 */
     public static final String LOGOUT = "/logout";
-
 }

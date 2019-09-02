@@ -9,7 +9,9 @@ import javax.jms.JMSException;
 import javax.jms.TextMessage;
 
 /**
- * activemq消费者
+ * @description activemq消费者
+ * @author: huangh
+ * @since 2019-09-02 15:45
  */
 @Service
 public class ConsumerService {

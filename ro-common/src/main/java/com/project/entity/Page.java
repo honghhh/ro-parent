@@ -2,23 +2,32 @@ package com.project.entity;
 
 import java.io.Serializable;
 
+/**
+ * @description 分页对象
+ * @author: huangh
+ * @since 2019-09-02 15:39
+ */
 public class Page implements Serializable {
 
-    /**  */
-    private static final long serialVersionUID = 1235007684101888024L;
+    /** 当前页 */
+    private Integer page = 1;
 
-    private Integer page = 1;//当前页
+    /** 每页显示条数 */
+    private Integer rows = 10;
 
-    private Integer rows = 10;//每页显示条数
+    /** 是否分页 0不分页 1分页 */
+    private boolean ispage = true;
 
-    private boolean ispage = true;//是否分页 0不分页 1分页
+    /** 页数 */
+    private Integer pageNum;
 
-    private Integer pageNum;// 页数
+    /** 条数 */
+    private Integer total;
 
-    private Integer total;// 条数
-
+    /** 开始时间 */
     private String startTime;
 
+    /** 结束时间 */
     private String endTime;
 
     public Integer getPage() {
@@ -59,10 +68,6 @@ public class Page implements Serializable {
 
     public void setTotal(Integer total) {
         this.total = total;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
     }
 
     public String getStartTime() {

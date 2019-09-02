@@ -1,8 +1,9 @@
 package com.project.exception;
 
 /**
- * 业务异常类
- * <p>抛接口提示</p>
+ * @description 业务异常类 抛接口提示
+ * @author: huangh
+ * @since 2019-09-02 15:41
  */
 public class ThrowJsonException extends RuntimeException {
 

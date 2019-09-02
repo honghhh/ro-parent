@@ -2,11 +2,25 @@ package com.project.enums;
 
 import com.project.utils.FunctionUtils;
 
+/**
+ * @description 支付类型
+ * @author: huangh
+ * @since 2019-09-02 15:40
+ */
 public enum PayTypeEnums {
 
-    wx(1,"微信"),
-    alipay(2,"支付宝"),
-    balance(3,"余额");
+    /**
+     * 微信
+     */
+    wx(1, "微信"),
+    /**
+     * 支付宝
+     */
+    alipay(2, "支付宝"),
+    /**
+     * 余额
+     */
+    balance(3, "余额");
 
     private Integer id;
     private String name;
@@ -27,7 +41,7 @@ public enum PayTypeEnums {
         this.name = name;
     }
 
-    private PayTypeEnums(Integer id,String name) {
+    private PayTypeEnums(Integer id, String name) {
         this.id=id;
         this.name=name;
     }

@@ -7,6 +7,11 @@ import java.net.URLConnection;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @description Http工具类
+ * @author: huangh
+ * @since 2019-09-02 15:56
+ */
 public class HttpUtil {
 
     public static String postServerFile(String httpurl, String fileName, InputStream inputStream, String path, Integer fileType) {
@@ -51,8 +56,9 @@ public class HttpUtil {
             BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 
             String line = null;
-            while ((line = reader.readLine()) != null)
+            while ((line = reader.readLine()) != null) {
                 result = result + line;
+            }
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("发送POST请求出现异常！" + e);
@@ -89,8 +95,9 @@ public class HttpUtil {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             String temp;
-            while ((temp = br.readLine()) != null)
+            while ((temp = br.readLine()) != null) {
                 buffer.append(temp);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -164,8 +171,9 @@ public class HttpUtil {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             String temp;
-            while ((temp = br.readLine()) != null)
+            while ((temp = br.readLine()) != null) {
                 buffer.append(temp);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -190,9 +198,9 @@ public class HttpUtil {
             // 获取所有响应头字段
             Map<String, List<String>> map = connection.getHeaderFields();
             // 遍历所有的响应头字段
-      /*for (String key : map.keySet()) {
-        System.out.println(key + "--->" + map.get(key));
-      }*/
+            /*for (String key : map.keySet()) {
+               System.out.println(key + "--->" + map.get(key));
+             }*/
             // 定义 BufferedReader输入流来读取URL的响应
             in = new BufferedReader(new InputStreamReader(
                     connection.getInputStream(), "utf-8"));

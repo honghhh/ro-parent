@@ -120,4 +120,15 @@ public class LoginDTO {
     public void setRolename(String rolename) {
         this.rolename = rolename;
     }
+
+    @Override
+    public String toString() {
+        return "LoginDTO{" +
+                "userid=" + userid +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", rolename='" + rolename + '\'' +
+                '}';
+    }
 }

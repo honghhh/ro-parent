@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
- * 菜单拦截器
+ * @description 菜单拦截器
+ * @author: huangh
+ * @since 2019-09-02 15:24
  */
 public class MenuInterceptor implements HandlerInterceptor {
 
@@ -34,7 +36,8 @@ public class MenuInterceptor implements HandlerInterceptor {
         String type = request.getHeader("X-Requested-With");
         if (userid == null) {
             // 如果为ajax请求
-            if ("XMLHttpRequest".equalsIgnoreCase(type)) {
+            String ajax = "XMLHttpRequest";
+            if (ajax.equalsIgnoreCase(type)) {
                 response.setHeader("sessionstatus", "timeout");
             } else {
                 response.sendRedirect(MappingUtils.LOGIN);
@@ -48,8 +51,9 @@ public class MenuInterceptor implements HandlerInterceptor {
             strs.add(MappingUtils.SHOW_INDEX);
             strs.add(MappingUtils.SHOW_WELCOME);
             boolean bool = strs.contains(returnUrl);
-            //如果是ajax请求
-            if ("XMLHttpRequest".equalsIgnoreCase(type)) {
+            // 如果为ajax请求
+            String ajax = "XMLHttpRequest";
+            if (ajax.equalsIgnoreCase(type)) {
                 if (!bool) {
                     throw new ThrowJsonException("您还没有此功能权限不能操作");
                 }

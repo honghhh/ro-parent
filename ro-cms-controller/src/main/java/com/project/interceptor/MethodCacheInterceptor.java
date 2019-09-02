@@ -7,14 +7,20 @@ import org.aopalliance.intercept.MethodInvocation;
 import java.util.List;
 
 /**
- * Redis缓存过滤器
+ * @description Redis缓存过滤器
+ * @author: huangh
+ * @since 2019-09-02 15:26
  */
 public class MethodCacheInterceptor implements MethodInterceptor {
 
+    /** redis工具类 */
     private RedisUtil redisUtil;
-    private List<String> targetNamesList; // 禁用缓存的类名列表
-    private List<String> methodNamesList; // 禁用缓存的方法列表
-    private String defaultCacheExpireTime; // 缓存默认的过期时间
+    /** 禁用缓存的类名列表 */
+    private List<String> targetNamesList;
+    /** 禁用缓存的方法列表 */
+    private List<String> methodNamesList;
+    /** 缓存默认的过期时间 */
+    private String defaultCacheExpireTime;
 
     /**
      * 实现MethodInterceptor接口，达到方法执行前后增强
@@ -65,6 +71,8 @@ public class MethodCacheInterceptor implements MethodInterceptor {
 
     /**
      * 是否加入缓存
+     * @param targetName 类名
+     * @param methodName 方法名
      * @return
      */
     private boolean isAddCache(String targetName, String methodName) {
@@ -78,9 +86,9 @@ public class MethodCacheInterceptor implements MethodInterceptor {
 
     /**
      * 创建缓存key
-     * @param targetName
-     * @param methodName
-     * @param arguments
+     * @param targetName 类名
+     * @param methodName 方法名
+     * @param arguments 参数数组
      */
     private String getCacheKey(String targetName, String methodName,
                                Object[] arguments) {

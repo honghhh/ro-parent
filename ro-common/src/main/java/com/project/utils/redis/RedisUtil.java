@@ -7,6 +7,11 @@ import java.io.Serializable;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @description redis工具类
+ * @author: huangh
+ * @since 2019-09-02 16:00
+ */
 public class RedisUtil {
 
     private RedisTemplate<Serializable, Object> redisTemplate;

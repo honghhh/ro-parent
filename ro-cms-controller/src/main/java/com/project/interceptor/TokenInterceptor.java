@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Token拦截器
+ * @description Token拦截器
+ * @author: huangh
+ * @since 2019-09-02 15:36
  */
 public class TokenInterceptor implements HandlerInterceptor {
 
@@ -69,5 +71,4 @@ public class TokenInterceptor implements HandlerInterceptor {
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
 
     }
-
 }

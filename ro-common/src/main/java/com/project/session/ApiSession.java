@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * ApiSession
+ * @description ApiSession
+ * @author: huangh
+ * @since 2019-09-02 15:43
  */
 public class ApiSession {
 

@@ -8,7 +8,9 @@ import javax.jms.Destination;
 import javax.jms.TextMessage;
 
 /**
- * 消息工具服务层
+ * @description 消息工具服务层
+ * @author: huangh
+ * @since 2019-09-02 15:45
  */
 public class MessageService {
 
@@ -17,11 +19,11 @@ public class MessageService {
     @Autowired
     private Destination destination;
 
-    // 队列消息生产者
+    /** 队列消息生产者 */
     @Autowired
     private ProducerService producerService;
 
-    // 队列消息消费者
+    /** 队列消息消费者 */
     @Autowired
     private ConsumerService consumerService;
 

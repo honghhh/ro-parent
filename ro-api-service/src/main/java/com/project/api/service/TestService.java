@@ -19,6 +19,11 @@ import org.springframework.stereotype.Service;
 import javax.jms.Destination;
 import java.util.List;
 
+/**
+ * @description 测试方法
+ * @author: huangh
+ * @since 2019-09-02 15:07
+ */
 @Service
 @EnableCaching
 public class TestService {

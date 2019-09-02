@@ -4,6 +4,11 @@ import org.apache.log4j.Logger;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+/**
+ * @description 定时器
+ * @author: huangh
+ * @since 2019-09-02 15:08
+ */
 @Component
 public class Task {
 

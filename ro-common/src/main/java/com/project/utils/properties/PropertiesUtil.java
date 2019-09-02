@@ -5,6 +5,11 @@ import org.apache.commons.lang3.StringUtils;
 import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
+/**
+ * @description properties文件工具类
+ * @author: huangh
+ * @since 2019-09-02 15:59
+ */
 public class PropertiesUtil {
 
     /**

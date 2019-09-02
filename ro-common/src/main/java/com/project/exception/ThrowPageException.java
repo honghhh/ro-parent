@@ -1,10 +1,12 @@
 package com.project.exception;
 
 /**
- * 业务异常类
- * <p>抛页面提示</p>
+ * @description 业务异常类 抛页面提示
+ * @author: huangh
+ * @since 2019-09-02 15:42
  */
 public class ThrowPageException extends RuntimeException {
+
 	/**  */
 	private static final long serialVersionUID = -100509897248249450L;
 
