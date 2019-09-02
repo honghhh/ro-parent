@@ -11,7 +11,7 @@
  Target Server Version : 50560
  File Encoding         : 65001
 
- Date: 20/08/2019 20:26:18
+ Date: 02/09/2019 17:03:51
 */
 
 SET NAMES utf8mb4;
@@ -60,7 +60,13 @@ CREATE TABLE `menu`  (
   `status` int(11) NOT NULL DEFAULT 0 COMMENT '0启用 -1禁用',
   `type` int(2) NULL DEFAULT NULL COMMENT '1显示菜单 2功能菜单',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 102 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单表' ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of menu
+-- ----------------------------
+INSERT INTO `menu` VALUES (1, 0, '基础管理', 'javaScript:;', NULL, 0, 0, 1);
+INSERT INTO `menu` VALUES (101, 1, '用户列表', '11', NULL, 0, 0, 1);
 
 -- ----------------------------
 -- Table structure for role
@@ -78,8 +84,8 @@ CREATE TABLE `role`  (
 -- ----------------------------
 -- Records of role
 -- ----------------------------
-INSERT INTO `role` VALUES (1, '超级管理员', NULL, 0, '2019-08-20 14:39:23');
-INSERT INTO `role` VALUES (2, '后台管理员', NULL, 0, '2019-08-20 20:25:15');
+INSERT INTO `role` VALUES (1, '超级管理员', '1,101', 0, '2019-08-20 14:39:23');
+INSERT INTO `role` VALUES (2, '后台管理员', '1,101', 0, '2019-08-20 20:25:15');
 
 -- ----------------------------
 -- Table structure for user
@@ -91,16 +97,15 @@ CREATE TABLE `user`  (
   `password` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '密码',
   `nickname` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '昵称',
   `headurl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '头像',
-  `roleid` int(11) NULL DEFAULT 1 COMMENT '角色id',
+  `roleid` int(11) NULL DEFAULT NULL COMMENT '角色id',
   `status` int(2) NULL DEFAULT 0 COMMENT '0有效 -1无效',
   `createtime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台账号表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台账号表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'admin', '21218cca77804d2ba1922c33e0151105', '', NULL, 1, 0, '2019-08-20 14:39:04');
-INSERT INTO `user` VALUES (4, '18316770399', '21218cca77804d2ba1922c33e0151105', NULL, NULL, 2, 0, '2019-08-19 20:28:42');
+INSERT INTO `user` VALUES (1, 'admin', '21218cca77804d2ba1922c33e0151105', 'aaaaa', NULL, 1, 0, '2019-08-20 14:39:04');
 
 SET FOREIGN_KEY_CHECKS = 1;
