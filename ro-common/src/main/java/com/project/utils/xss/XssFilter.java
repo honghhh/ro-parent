@@ -10,6 +10,7 @@ import java.io.IOException;
  * @since 2019-09-02 16:01
  */
 public class XssFilter implements Filter {
+
 	FilterConfig filterConfig = null;
 
     @Override
