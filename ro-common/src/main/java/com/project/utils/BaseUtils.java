@@ -6,6 +6,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
 
+/**
+ * @description 语言工具类
+ * @author: huangh
+ * @since 2019-09-02 17:06
+ */
 public class BaseUtils {
 
     /**
