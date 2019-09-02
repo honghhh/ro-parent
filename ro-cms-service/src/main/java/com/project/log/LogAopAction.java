@@ -18,7 +18,9 @@ import java.lang.reflect.Method;
 import java.util.Date;
 
 /**
- * 日志
+ * @description 日志通知类
+ * @author: huangh
+ * @since 2019-09-02 15:09
  */
 @Component
 @Aspect
@@ -32,16 +34,18 @@ public class LogAopAction {
         @Around: 环绕通知, 围绕着方法执行
     */
 
-    // 获取开始时间
-    private long BEGIN_TIME;
+    /** 获取开始时间 */
+    private long beginTime;
 
-    // 获取结束时间
-    private long END_TIME;
+    /** 获取结束时间 */
+    private long endTime;
 
-    // 定义本次log实体
+    /** 定义本次log实体 */
     private Log log = new Log();
 
-    // 定义切入点  @Pointcut("execution(* com.project.service..*.*(..))")  -- 表示对com.project.service 包下的所有方法都可添加切入点
+    /**
+     * 定义切入点  @Pointcut("execution(* com.project.service..*.*(..))")  -- 表示对com.project.service 包下的所有方法都可添加切入点
+     */
     @Pointcut("execution(* com.project.service..*.*(..))")
     private void controllerAspect() {}
 
@@ -53,7 +57,7 @@ public class LogAopAction {
      */
     @Before("controllerAspect()")
     public void doBefore() {
-        BEGIN_TIME = new Date().getTime();
+        beginTime = System.currentTimeMillis();
     }
 
     /**
@@ -61,7 +65,7 @@ public class LogAopAction {
      */
     @After("controllerAspect()")
     public void after() {
-        END_TIME = new Date().getTime();
+        endTime = System.currentTimeMillis();
     }
 
     /**
@@ -83,9 +87,9 @@ public class LogAopAction {
                             log.setLoginaccount(loginUser.getLogin() + "|" + loginUser.getNickname());
                         }
                         // 执行时长
-                        log.setActiontime(END_TIME - BEGIN_TIME);
+                        log.setActiontime(endTime - beginTime);
                         // 执行开始时间
-                        log.setGmtcreate(new Date(BEGIN_TIME));
+                        log.setGmtcreate(new Date(beginTime));
                         logMapper.insertSelective(log);
                     }
                 }
@@ -183,9 +187,10 @@ public class LogAopAction {
      * @return
      */
     private String getIp(HttpServletRequest request) {
-        if (request.getHeader("x-forwarded-for") == null) {
+        String ip = request.getHeader("x-forwarded-for");
+        if (ip == null) {
             return request.getRemoteAddr();
         }
-        return request.getHeader("x-forwarded-for");
+        return ip;
     }
 }

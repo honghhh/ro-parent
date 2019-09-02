@@ -3,7 +3,9 @@ package com.project.log;
 import java.lang.annotation.*;
 
 /**
- * 记录操作日志自定义注解
+ * @description 记录操作日志自定义注解
+ * @author: huangh
+ * @since 2019-09-02 15:16
  */
 @Target({ ElementType.PARAMETER, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
