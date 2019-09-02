@@ -92,7 +92,6 @@
                 <!-- 拦截所有 -->
                 <mvc:mapping path="/**" />
                 <!-- 放行请求方法 -->
-                <mvc:exclude-mapping path="/" />
                 <mvc:exclude-mapping path="/showLogin" />
                 <mvc:exclude-mapping path="/login" />
                 <mvc:exclude-mapping path="/verifyImg" />
