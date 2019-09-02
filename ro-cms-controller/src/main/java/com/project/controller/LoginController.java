@@ -3,7 +3,7 @@ package com.project.controller;
 import com.project.rest.RestResponse;
 import com.project.service.LoginService;
 import com.project.session.CmsSession;
-import com.project.utils.MappingUtil;
+import com.project.utils.MappingUtils;
 import com.project.utils.VerifyCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,9 +26,9 @@ public class LoginController {
      * 登录页
      * @return
      */
-    @RequestMapping(value = MappingUtil.SHOW_LOGIN)
+    @RequestMapping(value = MappingUtils.SHOW_LOGIN)
     public ModelAndView showLogin(){
-        ModelAndView view = new ModelAndView(MappingUtil.SHOW_LOGIN);
+        ModelAndView view = new ModelAndView(MappingUtils.SHOW_LOGIN);
         return view;
     }
 
@@ -38,7 +38,7 @@ public class LoginController {
      * @param passWord 密码
      * @return
      */
-    @RequestMapping(value = MappingUtil.LOGIN)
+    @RequestMapping(value = MappingUtils.LOGIN)
     @ResponseBody
     public RestResponse login(HttpServletRequest request, HttpServletResponse response, String userName, String passWord){
         RestResponse result = loginService.login(request, response, userName, passWord);
@@ -51,7 +51,7 @@ public class LoginController {
      * @param response 返回对象
      * @return
      */
-    @RequestMapping(value = MappingUtil.VERIFY_IMG)
+    @RequestMapping(value = MappingUtils.VERIFY_IMG)
     public void verifyImg(HttpServletRequest request, HttpServletResponse response) {
         try {
             // 创建验证码对象
@@ -75,7 +75,7 @@ public class LoginController {
      * @param code 验证码
      * @return
      */
-    @RequestMapping(value = MappingUtil.REGISTER)
+    @RequestMapping(value = MappingUtils.REGISTER)
     @ResponseBody
     public RestResponse register(HttpServletRequest request, String userName, String passWord, String code) {
         RestResponse result = loginService.register(request, userName, passWord, code);
@@ -86,11 +86,11 @@ public class LoginController {
      * 退出登录
      * @return
      */
-    @RequestMapping(value = MappingUtil.LOGOUT)
+    @RequestMapping(value = MappingUtils.LOGOUT)
     @ResponseBody
     public ModelAndView logout(HttpServletRequest request){
         CmsSession.exit(request);
-        ModelAndView view = new ModelAndView(MappingUtil.SHOW_LOGIN);
+        ModelAndView view = new ModelAndView(MappingUtils.SHOW_LOGIN);
         return view;
     }
 }

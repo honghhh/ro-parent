@@ -3,7 +3,7 @@ package com.project.interceptor;
 import com.project.exception.ThrowJsonException;
 import com.project.exception.ThrowPageException;
 import com.project.session.CmsSession;
-import com.project.utils.MappingUtil;
+import com.project.utils.MappingUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -37,7 +37,7 @@ public class MenuInterceptor implements HandlerInterceptor {
             if ("XMLHttpRequest".equalsIgnoreCase(type)) {
                 response.setHeader("sessionstatus", "timeout");
             } else {
-                response.sendRedirect(MappingUtil.LOGIN);
+                response.sendRedirect(MappingUtils.LOGIN);
             }
             return false;
         } else {
@@ -45,8 +45,8 @@ public class MenuInterceptor implements HandlerInterceptor {
             String returnUrl = String.valueOf(request.getServletPath());
             List<String> strs = CmsSession.getMenuUrlList(request);
             // 登录了补充通用菜单 因为通用菜单不存入菜单表里
-            strs.add(MappingUtil.SHOW_INDEX);
-            strs.add(MappingUtil.SHOW_WELCOME);
+            strs.add(MappingUtils.SHOW_INDEX);
+            strs.add(MappingUtils.SHOW_WELCOME);
             boolean bool = strs.contains(returnUrl);
             //如果是ajax请求
             if ("XMLHttpRequest".equalsIgnoreCase(type)) {

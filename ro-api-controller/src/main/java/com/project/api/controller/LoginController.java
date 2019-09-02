@@ -1,7 +1,7 @@
 package com.project.api.controller;
 
 import com.project.api.service.LoginService;
-import com.project.api.utils.MappingUtil;
+import com.project.api.utils.MappingUtils;
 import com.project.rest.RestResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +23,7 @@ public class LoginController {
      * @param passWord 密码
      * @return
      */
-    @RequestMapping(value = MappingUtil.LOGIN)
+    @RequestMapping(value = MappingUtils.LOGIN)
     @ResponseBody
     public RestResponse login(HttpServletRequest request, HttpServletResponse response, String userName, String passWord) {
         RestResponse result = loginService.login(request, response, userName, passWord);

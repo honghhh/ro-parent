@@ -3,7 +3,7 @@ package com.project.utils;
 /**
  * 地址映射工具类
  */
-public class MappingUtil {
+public class MappingUtils {
 
     /** 页面 - 登录 */
     public static final String SHOW_LOGIN = "/showLogin";

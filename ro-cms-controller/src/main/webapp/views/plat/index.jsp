@@ -126,18 +126,18 @@
     }).extend({
         index: 'lib/index' //主入口模块
     }).use(['index'],function () {
-        var $ = layui.$,
+        var $ = layui.$,//引入jquery
             admin = layui.admin,
-            element = layui.element,
-            layer = layui.layer;
+            element = layui.element,//element模块的实例 返回的element变量为该实例的对象，携带一些用于元素操作的基础方法 比如监听事件
+            layer = layui.layer;//弹层组件
 
-        element.render();
+        element.render();//更新渲染
 
         var active = {
             password1: function () {
                 layer.open({
                     title:'修改密码',
-                    type: 2,
+                    type: 2,//layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
                     shadeClose: true,
                     area: ['520px', '350px'],
                     content: '/base/passwordUpdate'
@@ -146,8 +146,8 @@
         };
 
         $('#right-layer .update .updatePassword').on('click', function(){
-            var type = $(this).data('type');
-            active[type] && active[type].call(this);
+            var type = $(this).data('type');//data-type="password1" 获取到password1的参数
+            active[type] && active[type].call(this);//执行参数为password1的方法
         });
     });
 </script>

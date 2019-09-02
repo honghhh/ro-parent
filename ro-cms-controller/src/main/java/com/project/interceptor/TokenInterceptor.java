@@ -1,13 +1,11 @@
 package com.project.interceptor;
 
-import com.project.dao.UserMapper;
 import com.project.dto.cms.LoginDto;
 import com.project.session.CmsSession;
-import com.project.utils.MappingUtil;
+import com.project.utils.MappingUtils;
 import com.project.utils.jwt.JwtUtil;
 import com.project.utils.token.TokenUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -36,13 +34,13 @@ public class TokenInterceptor implements HandlerInterceptor {
         String token = TokenUtils.getToken(request);
         // 如果token不存在重定向登录页
         if (StringUtils.isBlank(token)) {
-            response.sendRedirect(request.getContextPath() + MappingUtil.SHOW_LOGIN);
+            response.sendRedirect(request.getContextPath() + MappingUtils.SHOW_LOGIN);
             return false;
         }
         // 从session里获取userId
         Integer userId = CmsSession.getUserId(request);
         if (userId == null) {
-            response.sendRedirect(request.getContextPath() + MappingUtil.SHOW_LOGIN);
+            response.sendRedirect(request.getContextPath() + MappingUtils.SHOW_LOGIN);
             return false;
         }
         // 从session里去获取用户对象
@@ -52,12 +50,12 @@ public class TokenInterceptor implements HandlerInterceptor {
             Boolean verify = JwtUtil.isVerify(token, loginDto);
             // 如果token里的信息与session对象里面不符 验证失败
             if (!verify) {
-                response.sendRedirect(request.getContextPath() + MappingUtil.SHOW_LOGIN);
+                response.sendRedirect(request.getContextPath() + MappingUtils.SHOW_LOGIN);
                 return false;
             }
             return true;
         } catch (Exception e) {
-            response.sendRedirect(request.getContextPath() + MappingUtil.SHOW_LOGIN);
+            response.sendRedirect(request.getContextPath() + MappingUtils.SHOW_LOGIN);
             return false;
         }
     }

@@ -2,10 +2,9 @@ package com.project.controller;
 
 import com.project.dto.cms.LoginDto;
 import com.project.entity.Menu;
-import com.project.entity.User;
 import com.project.service.PlatService;
 import com.project.session.CmsSession;
-import com.project.utils.MappingUtil;
+import com.project.utils.MappingUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,9 +23,9 @@ public class PlatController {
      * 首页
      * @return
      */
-    @RequestMapping(value = MappingUtil.SHOW_INDEX)
+    @RequestMapping(value = MappingUtils.SHOW_INDEX)
     public ModelAndView showIndex(HttpServletRequest request){
-        ModelAndView view = new ModelAndView(MappingUtil.SHOW_INDEX);
+        ModelAndView view = new ModelAndView(MappingUtils.SHOW_INDEX);
         List<Menu> menus = CmsSession.getMenuList(request);
         LoginDto loginDto = CmsSession.getUser(request);
         view.addObject("menus", menus);
@@ -38,9 +37,9 @@ public class PlatController {
      * 欢迎页
      * @return
      */
-    @RequestMapping(value = MappingUtil.SHOW_WELCOME)
+    @RequestMapping(value = MappingUtils.SHOW_WELCOME)
     public ModelAndView showWelcome(){
-        ModelAndView view = new ModelAndView(MappingUtil.SHOW_WELCOME);
+        ModelAndView view = new ModelAndView(MappingUtils.SHOW_WELCOME);
         return view;
     }
 }
