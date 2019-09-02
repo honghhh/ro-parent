@@ -1,16 +1,13 @@
-/*
 package com.project.utils.xss;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
-*/
 /**
  * @description 防止SXX 入侵
  * @author: huangh
  * @since 2019-09-02 16:02
- *//*
-
+ */
 public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper{
 
 	public XssHttpServletRequestWrapper(HttpServletRequest servletRequest) {
@@ -76,4 +73,3 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper{
         return value;
     }
 }
-*/

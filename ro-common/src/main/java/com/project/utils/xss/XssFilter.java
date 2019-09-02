@@ -1,17 +1,14 @@
-/*
 package com.project.utils.xss;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-*/
 /**
  * @description 防XSS入驻
  * @author: huangh
  * @since 2019-09-02 16:01
- *//*
-
+ */
 public class XssFilter implements Filter {
 
 	FilterConfig filterConfig = null;
@@ -33,4 +30,3 @@ public class XssFilter implements Filter {
                 (HttpServletRequest) request), response);
     }
 }
-*/
