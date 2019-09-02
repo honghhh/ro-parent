@@ -1,6 +1,6 @@
 package com.project.session;
 
-import com.project.dto.cms.LoginDto;
+import com.project.dto.cms.LoginDTO;
 import com.project.entity.Menu;
 
 import javax.servlet.http.HttpServletRequest;
@@ -77,7 +77,7 @@ public class CmsSession {
     /**
      * 用户设置session
      */
-    public static void setUser(HttpServletRequest request, LoginDto loginDto) {
+    public static void setUser(HttpServletRequest request, LoginDTO loginDto) {
         request.getSession().removeAttribute(USER);
         request.getSession().setAttribute(USER, loginDto);
     }
@@ -85,8 +85,8 @@ public class CmsSession {
     /**
      * 用户获取session
      */
-    public static LoginDto getUser(HttpServletRequest request) {
-        return (LoginDto) request.getSession().getAttribute(USER);
+    public static LoginDTO getUser(HttpServletRequest request) {
+        return (LoginDTO) request.getSession().getAttribute(USER);
     }
 
     /**

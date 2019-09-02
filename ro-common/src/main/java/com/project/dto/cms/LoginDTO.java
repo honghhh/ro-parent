@@ -1,10 +1,10 @@
-package com.project.dto.api;
+package com.project.dto.cms;
 
 /**
  * 登录DTO
  * @author huangh
  */
-public class LoginDto {
+public class LoginDTO {
 
     /** 用户id */
     private Integer userid;

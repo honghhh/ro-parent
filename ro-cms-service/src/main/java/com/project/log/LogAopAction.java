@@ -1,7 +1,7 @@
 package com.project.log;
 
 import com.project.dao.LogMapper;
-import com.project.dto.cms.LoginDto;
+import com.project.dto.cms.LoginDTO;
 import com.project.entity.Log;
 import com.project.session.CmsSession;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -76,7 +76,7 @@ public class LogAopAction {
                         // 获取request对象
                         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
                         // 获取当前登陆用户信息
-                        LoginDto loginUser = CmsSession.getUser(request);
+                        LoginDTO loginUser = CmsSession.getUser(request);
                         if (loginUser == null) {
                             log.setLoginaccount("—— ——");
                         } else {

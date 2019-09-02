@@ -1,6 +1,6 @@
 package com.project.interceptor;
 
-import com.project.dto.cms.LoginDto;
+import com.project.dto.cms.LoginDTO;
 import com.project.session.CmsSession;
 import com.project.utils.MappingUtils;
 import com.project.utils.jwt.JwtUtil;
@@ -44,7 +44,7 @@ public class TokenInterceptor implements HandlerInterceptor {
             return false;
         }
         // 从session里去获取用户对象
-        LoginDto loginDto = CmsSession.getUser(request);
+        LoginDTO loginDto = CmsSession.getUser(request);
         try {
             // 校验token
             Boolean verify = JwtUtil.isVerify(token, loginDto);

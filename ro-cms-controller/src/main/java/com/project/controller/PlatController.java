@@ -1,6 +1,6 @@
 package com.project.controller;
 
-import com.project.dto.cms.LoginDto;
+import com.project.dto.cms.LoginDTO;
 import com.project.entity.Menu;
 import com.project.service.PlatService;
 import com.project.session.CmsSession;
@@ -27,7 +27,7 @@ public class PlatController {
     public ModelAndView showIndex(HttpServletRequest request){
         ModelAndView view = new ModelAndView(MappingUtils.SHOW_INDEX);
         List<Menu> menus = CmsSession.getMenuList(request);
-        LoginDto loginDto = CmsSession.getUser(request);
+        LoginDTO loginDto = CmsSession.getUser(request);
         view.addObject("menus", menus);
         view.addObject("loginDto", loginDto);
         return view;

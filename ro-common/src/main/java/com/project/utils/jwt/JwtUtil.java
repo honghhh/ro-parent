@@ -1,7 +1,6 @@
 package com.project.utils.jwt;
 
-import com.project.dto.cms.LoginDto;
-import com.project.entity.User;
+import com.project.dto.cms.LoginDTO;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -22,7 +21,7 @@ public class JwtUtil {
      * @param loginDto      登录成功的user对象
      * @return
      */
-    public static String createJWT(long ttlMillis, LoginDto loginDto) {
+    public static String createJWT(long ttlMillis, LoginDTO loginDto) {
         //指定签名的时候使用的签名算法，也就是header那部分，jjwt已经将这部分内容封装好了。
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 
@@ -72,7 +71,7 @@ public class JwtUtil {
      * @param loginDto  用户的对象
      * @return
      */
-    public static Claims parseJWT(String token, LoginDto loginDto) {
+    public static Claims parseJWT(String token, LoginDTO loginDto) {
         //签名秘钥，和生成的签名的秘钥一模一样
         String key = loginDto.getPassword();
 
@@ -93,7 +92,7 @@ public class JwtUtil {
      * @param loginDto
      * @return
      */
-    public static Boolean isVerify(String token, LoginDto loginDto) {
+    public static Boolean isVerify(String token, LoginDTO loginDto) {
         //签名秘钥，和生成的签名的秘钥一模一样
         String key = loginDto.getPassword();
 

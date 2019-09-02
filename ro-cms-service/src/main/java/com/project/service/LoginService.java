@@ -3,7 +3,7 @@ package com.project.service;
 import com.project.dao.MenuMapper;
 import com.project.dao.RoleMapper;
 import com.project.dao.UserMapper;
-import com.project.dto.cms.LoginDto;
+import com.project.dto.cms.LoginDTO;
 import com.project.entity.Menu;
 import com.project.entity.MenuExample;
 import com.project.entity.Role;
@@ -79,7 +79,7 @@ public class LoginService {
             menuUrls.add(m.getUrl());
         }
         // 保存登录信息对象
-        LoginDto loginDto = new LoginDto();
+        LoginDTO loginDto = new LoginDTO();
         loginDto.setUserid(user.getId());
         loginDto.setLogin(user.getLogin());
         loginDto.setPassword(user.getPassword());
