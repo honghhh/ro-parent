@@ -72,7 +72,7 @@
         <property name="redisTemplate" ref="redisTemplate"/>
     </bean>
 
-    <!--配置切面拦截方法 -->
+    <!-- 配置切面拦截方法 需要时配置路径 -->
     <aop:config proxy-target-class="true">
         <aop:pointcut id="controllerMethodPointcut" expression="(execution(* com.project.service.*.select*(..)) or execution(* com.project.service.*.query*(..)))"/>
         <aop:advisor advice-ref="methodCacheInterceptor" pointcut-ref="controllerMethodPointcut"/>
