@@ -29,14 +29,24 @@
                 </li>
             </ul>
             <ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right">
+                <%--<li class="layui-nav-item layui-hide-xs" lay-unselect id="clear">
+                    <a href="javascript:;" data-type="clear" class="clear">
+                        <i class="layui-icon layui-icon-fonts-clear"></i>
+                    </a>
+                </li>--%>
+                <li class="layui-nav-item layui-hide-xs" lay-unselect>
+                    <a href="javascript:;" layadmin-event="theme">
+                        <i class="layui-icon layui-icon-theme"></i>
+                    </a>
+                </li>
                 <li class="layui-nav-item" lay-unselect>
                     <a href="javascript:;">
                         <cite>${loginDto.login}</cite>
                     </a>
-                    <dl class="layui-nav-child">
-                        <dd><a lay-href="javaScript:;" data-type="password1" class="updatePassword">修改密码</a></dd>
+                    <dl class="layui-nav-child" id="right-layer">
+                        <dd style="text-align: center;"><a lay-href="javaScript:;" data-type="password1" class="updatePassword">修改密码</a></dd>
                         <hr>
-                        <dd layadmin-event="logout" style="text-align: center;"><a href="/logout">退出</a></dd>
+                        <dd style="text-align: center;"><a href="/logout">退出</a></dd>
                     </dl>
                 </li>
 
@@ -127,6 +137,7 @@
         index: 'lib/index' // 主入口模块
     }).use(['index'],function () {
         var $ = layui.$,// 引入jquery
+            admin = layui.admin,
             element = layui.element,//element模块的实例 返回的element变量为该实例的对象，携带一些用于元素操作的基础方法 比如监听事件
             layer = layui.layer;// 弹层组件
 
@@ -141,13 +152,40 @@
                     area: ['520px', '350px'],
                     content: '/user/showUpdatePassword'
                 });
-            }
+            }/*,
+            clear:function(){
+                layer.confirm('清除缓存？', function(){
+                    $.ajax({
+                        url: "/clear",
+                        data: {},
+                        dataType: "json",
+                        type: "post",
+                        success: function (data) {
+                            if(data.status){
+                                layer.msg('操作成功',{icon:1});
+                            }
+                        }
+                    });
+                });
+            },
+            tip1:function(){
+                layer.tips('对分类及协议变更后请清除缓存', this, {
+                    tips: 1
+                });
+            }*/
         };
 
-        $('#right-layer .update .updatePassword').on('click', function(){
+        $('#right-layer .updatePassword').on('click', function(){
             var type = $(this).data('type');// data-type="password1" 获取到password1的参数
             active[type] && active[type].call(this);// 执行参数为password1的方法
         });
+        $("#clear .clear").on('click',function () {
+            var type = $(this).data('type');
+            active[type] && active[type].call(this);
+        });
+        $(".clear").on('mouseover',function () {
+            active['tip1'] && active['tip1'].call(this);
+        })
     });
 </script>
 </body>
