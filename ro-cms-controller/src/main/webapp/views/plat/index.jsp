@@ -83,7 +83,7 @@
                                 <c:forEach items="${menus}" var="ll">
                                     <c:if test="${ll.parentid==l.id && ll.type==1}">
                                         <dd data-name="button">
-                                            <a lay-href="${ll.url}">${ll.menuname}</a>
+                                            <a lay-href="${ll.url}"><i class="layui-icon ${ll.icon}"></i>${ll.menuname}</a>
                                         </dd>
                                     </c:if>
                                 </c:forEach>
