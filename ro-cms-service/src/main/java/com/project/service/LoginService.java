@@ -71,6 +71,9 @@ public class LoginService {
         if (role == null) {
             return GetRest.getFail("角色不存在，请联系后台人员分配角色");
         }
+        if (!FunctionUtils.isEquals(role.getStatus(), StaticUtils.status_yes)) {
+            return GetRest.getFail("角色已被冻结");
+        }
         // 根据角色所有的菜单id
         List<Integer> list = FunctionUtils.getIntegerList(role.getMenuids().split(","));
         if (list == null || list.size() < 1) {
