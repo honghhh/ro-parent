@@ -28,13 +28,13 @@
                                     <div class="layui-col-md3">
                                         <div class="layui-col-sm3" style="line-height: 38px">账号：</div>
                                         <div class="layui-col-sm8">
-                                            <input type="text" name="login" class="layui-input" value="${user.login}" placeholder="账号">
+                                            <input type="text" name="login" class="layui-input" value="${userObj.login}" placeholder="账号">
                                         </div>
                                     </div>
                                     <div class="layui-col-md3">
                                         <div class="layui-col-sm3" style="line-height: 38px">昵称：</div>
                                         <div class="layui-col-sm8">
-                                            <input type="text" name="nickname" class="layui-input" value="${user.nickname}" placeholder="昵称">
+                                            <input type="text" name="nickname" class="layui-input" value="${userObj.nickname}" placeholder="昵称">
                                         </div>
                                     </div>
                                     <div class="layui-col-sm3">

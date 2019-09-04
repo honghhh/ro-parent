@@ -4,13 +4,16 @@ import com.github.pagehelper.PageHelper;
 import com.project.dao.RoleMapper;
 import com.project.dao.UserMapper;
 import com.project.entity.Role;
+import com.project.entity.RoleExample;
 import com.project.entity.User;
 import com.project.rest.GetRest;
 import com.project.rest.RestResponse;
+import com.project.utils.StaticUtils;
 import com.project.utils.pwd.Encode;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -29,7 +32,7 @@ public class UserService {
 
     /**
      * 修改密码
-     * @param userId 用户id
+     * @param userId 管理员id
      * @param oldPwd 旧密码
      * @param newPwdOne 新密码
      * @param newPwdTwo 确认密码
@@ -65,19 +68,110 @@ public class UserService {
 
     /**
      * 获取管理员列表
-     * @param user 搜索对象
+     * @param userObj 搜索对象
      * @return java.util.List<com.project.entity.User>
      */
-    public List<User> showUserList(User user) {
-        if (user.isIspage()) {
-            PageHelper.startPage(user.getPage(), user.getRows());
+    public List<User> showUserList(User userObj) {
+        if (userObj.isIspage()) {
+            PageHelper.startPage(userObj.getPage(), userObj.getRows());
         }
-        List<User> list = userMapper.queryList(user);
+        List<User> list = userMapper.queryList(userObj);
         for (User u : list) {
             // 角色名称
             Role role = roleMapper.selectByPrimaryKey(u.getRoleid());
             u.setRoleName(role.getName());
         }
         return list;
+    }
+
+    /**
+     * 新增/编辑管理员
+     * @param userObj 管理员信息
+     * @param imgUrl 图片信息
+     * @return com.project.rest.RestResponse
+     */
+    public RestResponse editUser(User userObj, MultipartFile imgUrl) {
+        if (userObj.getLogin() == null) {
+            return GetRest.getFail("请输入账号");
+        }
+        if (StringUtils.isBlank(userObj.getNickname())) {
+            return GetRest.getFail("请输入管理员昵称");
+        }
+        if (userObj.getRoleid() == null) {
+            return GetRest.getFail("请选择管理员角色");
+        }
+        if (userObj.getId() == null) {
+            User user = userMapper.queryByLogin(userObj.getLogin());
+            if (user != null) {
+                return GetRest.getFail("账号已存在");
+            }
+        }
+        if (userObj.getId() == null && imgUrl == null) {
+            return GetRest.getFail("请上传管理员头像");
+        }
+        if (imgUrl != null) {
+            // 上传头像
+
+        }
+        int i = 0;
+        if (userObj.getId() == null) {
+            userObj.setPassword(Encode.md5Encode(StaticUtils.DEFAULT_PASSWORD));
+            i = userMapper.insertSelective(userObj);
+        } else {
+            i = userMapper.updateByPrimaryKeySelective(userObj);
+        }
+        if (i < 1) {
+            return GetRest.getFail("保存失败");
+        }
+        return GetRest.getSuccess("保存成功");
+    }
+
+    /**
+     * 删除管理员
+     * @param id 管理员id
+     * @return com.project.rest.RestResponse
+     */
+    public RestResponse deleteUser(Integer id) {
+        int i = userMapper.deleteByPrimaryKey(id);
+        if (i < 1) {
+            return GetRest.getFail("删除失败");
+        }
+        return GetRest.getSuccess("删除成功");
+    }
+
+    /**
+     * 启用/禁用管理员
+     * @param id 管理员id
+     * @param status 状态
+     * @return com.project.rest.RestResponse
+     */
+    public RestResponse updateUserStatus(Integer id, Integer status) {
+        User user = userMapper.selectByPrimaryKey(id);
+        if (user == null) {
+            return GetRest.getFail("管理员不存在");
+        }
+        user.setStatus(status);
+        int i = userMapper.updateByPrimaryKeySelective(user);
+        if (i < 1) {
+            return GetRest.getFail("操作失败");
+        }
+        return GetRest.getSuccess("操作成功");
+    }
+
+    /**
+     * 获取管理员信息
+     * @param id 管理员id
+     * @return com.project.entity.User
+     */
+    public User queryUser(Integer id) {
+        return userMapper.selectByPrimaryKey(id);
+    }
+
+    /**
+     * 获取角色列表
+     * @return java.util.List<com.project.entity.Role>
+     */
+    public List<Role> queryRoleList() {
+        return roleMapper.selectByExample(new RoleExample());
     }
 }

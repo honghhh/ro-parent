@@ -15,4 +15,16 @@ public class UserMapping {
 
     /** 页面 - 管理员列表 */
     public static final String SHOW_USER_LIST = "/user/showUserList";
+
+    /** 页面 - 新增/编辑管理员 */
+    public static final String SHOW_USER_EDIT = "/user/showUserEdit";
+
+    /** 操作 - 新增/编辑管理员 */
+    public static final String EDIT_USER = "/user/editUser";
+
+    /** 操作 - 删除管理员 */
+    public static final String DELETE_USER = "/user/deleteUser";
+
+    /** 操作 - 启用/禁用管理员 */
+    public static final String UPDATE_USER_STATUS = "/user/updateUserStatus";
 }

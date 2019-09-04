@@ -10,10 +10,10 @@ public class RoleMapping {
     /** 页面 - 角色列表 */
     public static final String SHOW_ROLE_LIST = "/role/showRoleList";
 
-    /** 页面 - 编辑角色 */
+    /** 页面 - 新增/编辑角色 */
     public static final String SHOW_ROLE_EDIT = "/role/showRoleEdit";
 
-    /** 操作 - 编辑角色 */
+    /** 操作 - 新增/编辑角色 */
     public static final String EDIT_ROLE = "/role/editRole";
 
     /** 操作 - 启用/禁用角色 */

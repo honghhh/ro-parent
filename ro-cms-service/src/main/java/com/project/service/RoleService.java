@@ -40,7 +40,7 @@ public class RoleService {
     }
 
     /**
-     * 编辑角色信息
+     * 新增/编辑角色信息
      * @param role 角色信息
      * @return com.project.rest.RestResponse
      */
@@ -119,7 +119,7 @@ public class RoleService {
             menuIds = "," + role.getMenuids() + ",";
         }
         MenuExample example = new MenuExample();
-        example.createCriteria().andStatusEqualTo(StaticUtils.status_yes);
+        example.createCriteria().andStatusEqualTo(StaticUtils.STATUS_YES);
         example.setOrderByClause("id asc,type asc");
         List<Menu> list = menuMapper.selectByExample(example);
         for (Menu m : list) {

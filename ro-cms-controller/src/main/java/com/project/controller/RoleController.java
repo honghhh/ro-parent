@@ -37,7 +37,7 @@ public class RoleController {
     }
 
     /**
-     * 编辑角色页面
+     * 新增/编辑角色页面
      * @param id 角色id
      * @return org.springframework.web.servlet.ModelAndView
      */
@@ -52,7 +52,7 @@ public class RoleController {
     }
 
     /**
-     * 编辑角色信息
+     * 新增/编辑角色信息
      * @param role 角色信息
      * @return com.project.rest.RestResponse
      */

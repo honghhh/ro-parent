@@ -63,7 +63,7 @@ public class LoginService {
         if (!user.getPassword().equals(Encode.md5Encode(passWord))) {
             return GetRest.getFail("密码不正确");
         }
-        if (!FunctionUtils.isEquals(user.getStatus(), StaticUtils.status_yes)) {
+        if (!FunctionUtils.isEquals(user.getStatus(), StaticUtils.STATUS_YES)) {
             return GetRest.getFail("账号已被冻结");
         }
         // 查询菜单
@@ -71,7 +71,7 @@ public class LoginService {
         if (role == null) {
             return GetRest.getFail("角色不存在，请联系后台人员分配角色");
         }
-        if (!FunctionUtils.isEquals(role.getStatus(), StaticUtils.status_yes)) {
+        if (!FunctionUtils.isEquals(role.getStatus(), StaticUtils.STATUS_YES)) {
             return GetRest.getFail("角色已被冻结");
         }
         // 根据角色所有的菜单id
@@ -80,7 +80,7 @@ public class LoginService {
             return GetRest.getFail("当前角色没有菜单权限");
         }
         MenuExample example = new MenuExample();
-        example.createCriteria().andIdIn(list).andStatusEqualTo(StaticUtils.status_yes);
+        example.createCriteria().andIdIn(list).andStatusEqualTo(StaticUtils.STATUS_YES);
         example.setOrderByClause("sort asc");
         List<Menu> menus = menuMapper.selectByExample(example);
         // 获取菜单地址集合

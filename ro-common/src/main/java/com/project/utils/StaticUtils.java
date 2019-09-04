@@ -10,6 +10,11 @@ public class StaticUtils {
     /**
      * 是否有效 -1无效 0有效
      */
-    public static final Integer status_yes = 0;
-    public static final Integer status_no = -1;
+    public static final Integer STATUS_YES = 0;
+    public static final Integer STATUS_NO = -1;
+
+    /**
+     * 默认密码
+     */
+    public static final String DEFAULT_PASSWORD = "888888";
 }

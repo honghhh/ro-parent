@@ -1,6 +1,7 @@
 package com.project.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.project.entity.Role;
 import com.project.entity.User;
 import com.project.rest.RestResponse;
 import com.project.service.UserService;
@@ -9,7 +10,9 @@ import com.project.utils.UserMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,7 +44,7 @@ public class UserController {
 
     /**
      * 修改密码
-     * @param userId 用户id
+     * @param userId 管理员id
      * @param oldPwd 旧密码
      * @param newPwdOne 新密码
      * @param newPwdTwo 确认密码
@@ -56,16 +59,69 @@ public class UserController {
 
     /**
      * 管理员列表页面
-     * @param user 搜索对象
+     * @param userObj 搜索对象
      * @return org.springframework.web.servlet.ModelAndView
      */
     @RequestMapping(value = UserMapping.SHOW_USER_LIST)
-    public ModelAndView showUserList(User user) {
+    public ModelAndView showUserList(User userObj) {
         ModelAndView view = new ModelAndView(UserMapping.SHOW_USER_LIST);
-        List<User> list = userService.showUserList(user);
+        List<User> list = userService.showUserList(userObj);
         PageInfo<User> pageInfo = new PageInfo<User>(list);
         view.addObject("pageInfo", pageInfo);
-        view.addObject("user", user);
+        view.addObject("userObj", userObj);
         return view;
+    }
+
+    /**
+     * 新增/编辑管理员页面
+     * @param id 管理员id
+     * @return org.springframework.web.servlet.ModelAndView
+     */
+    @RequestMapping(value = UserMapping.SHOW_USER_EDIT)
+    public ModelAndView showUserEdit(Integer id) {
+        ModelAndView view = new ModelAndView(UserMapping.SHOW_USER_EDIT);
+        User userObj = userService.queryUser(id);
+        List<Role> roles = userService.queryRoleList();
+        view.addObject("userObj", userObj);
+        view.addObject("roles", roles);
+        return view;
+    }
+
+    /**
+     * 新增/编辑管理员
+     * @param userObj 管理员信息
+     * @param imgUrl 图片信息
+     * @return com.project.rest.RestResponse
+     */
+    @RequestMapping(value = UserMapping.EDIT_USER)
+    @ResponseBody
+    public RestResponse editUser(User userObj, @RequestParam(name = "imgUrl", required = false) MultipartFile imgUrl) {
+        RestResponse result = userService.editUser(userObj, imgUrl);
+        return result;
+    }
+
+    /**
+     * 删除管理员
+     * @param id 管理员id
+     * @return com.project.rest.RestResponse
+     */
+    @RequestMapping(value = UserMapping.DELETE_USER)
+    @ResponseBody
+    public RestResponse deleteUser(Integer id) {
+        RestResponse result = userService.deleteUser(id);
+        return result;
+    }
+
+    /**
+     * 启用/禁用管理员
+     * @param id 管理员id
+     * @param status 状态
+     * @return com.project.rest.RestResponse
+     */
+    @RequestMapping(value = UserMapping.UPDATE_USER_STATUS)
+    @ResponseBody
+    public RestResponse updateUserStatus(Integer id, Integer status) {
+        RestResponse result = userService.updateUserStatus(id, status);
+        return result;
     }
 }
