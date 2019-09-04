@@ -11,7 +11,7 @@
  Target Server Version : 50560
  File Encoding         : 65001
 
- Date: 04/09/2019 11:24:29
+ Date: 04/09/2019 17:16:52
 */
 
 SET NAMES utf8mb4;
@@ -60,7 +60,7 @@ CREATE TABLE `menu`  (
   `status` int(11) NOT NULL DEFAULT 0 COMMENT '0启用 -1禁用',
   `type` int(2) NULL DEFAULT NULL COMMENT '1主页面 2功能 3子页面',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 302 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 20205 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of menu
@@ -69,10 +69,14 @@ INSERT INTO `menu` VALUES (1, 0, '系统管理', 'javaScript:;', 'layui-icon-set
 INSERT INTO `menu` VALUES (2, 0, '权限管理', 'javaScript:;', 'layui-icon-set', 0, 0, 0);
 INSERT INTO `menu` VALUES (3, 0, '用户管理', 'javaScript:;', 'layui-icon-set', 0, 0, 0);
 INSERT INTO `menu` VALUES (201, 2, '角色列表', '/role/showRoleList', NULL, 0, 0, 1);
-INSERT INTO `menu` VALUES (202, 2, '管理员列表', '/user/userList', '', 0, 0, 1);
-INSERT INTO `menu` VALUES (20101, 201, '编辑角色页面', '/role/showRoleEdit', NULL, 0, 0, 3);
+INSERT INTO `menu` VALUES (202, 2, '管理员列表', '/user/showUserList', '', 0, 0, 1);
+INSERT INTO `menu` VALUES (20101, 201, '新增/编辑角色页面', '/role/showRoleEdit', NULL, 0, 0, 3);
 INSERT INTO `menu` VALUES (20102, 201, '启用/禁用角色', '/role/updateRoleStatus', NULL, 0, 0, 2);
 INSERT INTO `menu` VALUES (20103, 201, '删除角色', '/role/deleteRole', NULL, 0, 0, 2);
+INSERT INTO `menu` VALUES (20201, 202, '新增/编辑管理员页面', '/user/showUserEdit', NULL, 0, 0, 3);
+INSERT INTO `menu` VALUES (20202, 202, '新增/编辑管理员', '/user/editUser', NULL, 0, 0, 2);
+INSERT INTO `menu` VALUES (20203, 202, '删除管理员', '/user/deleteUser', NULL, 0, 0, 2);
+INSERT INTO `menu` VALUES (20204, 202, '开启/禁用管理员', '/user/updateUserStatus', NULL, 0, 0, 2);
 
 -- ----------------------------
 -- Table structure for role
@@ -85,12 +89,12 @@ CREATE TABLE `role`  (
   `status` int(1) NULL DEFAULT 0 COMMENT '0有效 -1无效',
   `createtime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of role
 -- ----------------------------
-INSERT INTO `role` VALUES (1, '超级管理员', '20103,2,20102,201,20101,202', 0, '2019-08-20 14:39:23');
+INSERT INTO `role` VALUES (1, '超级管理员', '20203,20103,20202,20102,20201,20101,20204,2,201,202', 0, '2019-08-20 14:39:23');
 
 -- ----------------------------
 -- Table structure for user
@@ -106,7 +110,7 @@ CREATE TABLE `user`  (
   `status` int(2) NULL DEFAULT 0 COMMENT '0有效 -1无效',
   `createtime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '管理员账号表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '管理员账号表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of user
