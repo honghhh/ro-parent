@@ -22,8 +22,31 @@
                 <div class="layui-card">
                     <form action="/user/showUserList" id="seachFrom" class="layui-form">
                         <div class="layui-card-body">
-                            <div class="test-table-reload-btn" style="margin-left: -10px;margin-bottom: 10px;">
-                                <button class="layui-btn addThis" type="button" style="margin-left: 10px" data-id="0">新增管理员</button>
+                            <%-- 查询条件设置 --%>
+                            <div class="layui-container" style="padding-bottom: 50px">
+                                <div class="layui-col-md12">
+                                    <div class="layui-col-md3">
+                                        <div class="layui-col-sm3" style="line-height: 38px">账号：</div>
+                                        <div class="layui-col-sm8">
+                                            <input type="text" name="login" class="layui-input" value="${user.login}" placeholder="账号">
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-md3">
+                                        <div class="layui-col-sm3" style="line-height: 38px">昵称：</div>
+                                        <div class="layui-col-sm8">
+                                            <input type="text" name="nickname" class="layui-input" value="${user.nickname}" placeholder="昵称">
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-sm3">
+                                        <button class="layui-btn layui-btn" type="submit">查询</button>
+                                    </div>
+                                    <div class="layui-col-md12"><hr></div>
+                                </div>
+                            </div>
+                            <div class="layui-container" style="margin-left: -25px;">
+                                <div class="test-table-reload-btn" style="margin-bottom: 10px;">
+                                    <button class="layui-btn addThis" type="button" style="margin-left: 10px" data-id="0">新增管理员</button>
+                                </div>
                             </div>
                             <table class="layui-table">
                                 <thead>

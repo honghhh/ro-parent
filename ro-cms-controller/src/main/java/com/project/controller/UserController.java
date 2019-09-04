@@ -65,6 +65,7 @@ public class UserController {
         List<User> list = userService.showUserList(user);
         PageInfo<User> pageInfo = new PageInfo<User>(list);
         view.addObject("pageInfo", pageInfo);
+        view.addObject("user", user);
         return view;
     }
 }
