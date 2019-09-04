@@ -13,5 +13,6 @@ public class UserMapping {
     /** 操作 - 修改密码 */
     public static final String UPDATE_PASSWORD = "/user/updatePassword";
 
-
+    /** 页面 - 管理员列表 */
+    public static final String SHOW_USER_LIST = "/user/showUserList";
 }

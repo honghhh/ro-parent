@@ -96,4 +96,7 @@ public interface UserMapper {
 
     /** 查询登录账号 */
     User queryByLogin(String login);
+
+    /** 查询管理员列表 */
+    List<User> queryList(User user);
 }

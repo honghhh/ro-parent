@@ -320,4 +320,15 @@
   <select id="queryByLogin" parameterType="java.lang.String" resultType="com.project.entity.User">
       select * from user where login = #{login,jdbcType=VARCHAR}
   </select>
+
+  <!-- 查询管理员列表 -->
+  <select id="queryList" parameterType="com.project.entity.User" resultType="com.project.entity.User">
+      select * from user where 1 = 1
+      <if test="login != null and login !=''">
+          and login = #{login,jdbcType=VARCHAR}
+      </if>
+      <if test="nickname != null and nickname !=''">
+          and nickname = #{nickname,jdbcType=VARCHAR}
+      </if>
+  </select>
 </mapper>

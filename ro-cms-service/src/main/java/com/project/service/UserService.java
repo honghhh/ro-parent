@@ -1,5 +1,6 @@
 package com.project.service;
 
+import com.github.pagehelper.PageHelper;
 import com.project.dao.UserMapper;
 import com.project.entity.User;
 import com.project.rest.GetRest;
@@ -8,6 +9,8 @@ import com.project.utils.pwd.Encode;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @description 管理员业务
@@ -54,5 +57,18 @@ public class UserService {
             return GetRest.getFail("修改失败");
         }
         return GetRest.getSuccess("修改成功");
+    }
+
+    /**
+     * 获取管理员列表
+     * @param user 搜索对象
+     * @return java.util.List<com.project.entity.User>
+     */
+    public List<User> showUserList(User user) {
+        if (user.isIspage()) {
+            PageHelper.startPage(user.getPage(), user.getRows());
+        }
+        List<User> list = userMapper.queryList(user);
+        return list;
     }
 }

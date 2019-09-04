@@ -1,5 +1,7 @@
 package com.project.controller;
 
+import com.github.pagehelper.PageInfo;
+import com.project.entity.User;
 import com.project.rest.RestResponse;
 import com.project.service.UserService;
 import com.project.session.CmsSession;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @description 管理员Handle
@@ -49,5 +52,19 @@ public class UserController {
     public RestResponse updatePassword(Integer userId, String oldPwd, String newPwdOne, String newPwdTwo) {
         RestResponse result = userService.updatePassword(userId, oldPwd, newPwdOne, newPwdTwo);
         return result;
+    }
+
+    /**
+     * 管理员列表页面
+     * @param user 搜索对象
+     * @return org.springframework.web.servlet.ModelAndView
+     */
+    @RequestMapping(value = UserMapping.SHOW_USER_LIST)
+    public ModelAndView showUserList(User user) {
+        ModelAndView view = new ModelAndView(UserMapping.SHOW_USER_LIST);
+        List<User> list = userService.showUserList(user);
+        PageInfo<User> pageInfo = new PageInfo<User>(list);
+        view.addObject("pageInfo", pageInfo);
+        return view;
     }
 }
