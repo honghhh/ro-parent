@@ -11,7 +11,7 @@
  Target Server Version : 50560
  File Encoding         : 65001
 
- Date: 02/09/2019 17:03:51
+ Date: 04/09/2019 11:19:47
 */
 
 SET NAMES utf8mb4;
@@ -58,15 +58,21 @@ CREATE TABLE `menu`  (
   `icon` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '菜单样式标识',
   `sort` int(11) NULL DEFAULT 0 COMMENT '排序',
   `status` int(11) NOT NULL DEFAULT 0 COMMENT '0启用 -1禁用',
-  `type` int(2) NULL DEFAULT NULL COMMENT '1显示菜单 2功能菜单',
+  `type` int(2) NULL DEFAULT NULL COMMENT '1主页面 2功能 3子页面',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 102 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 302 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of menu
 -- ----------------------------
-INSERT INTO `menu` VALUES (1, 0, '基础管理', 'javaScript:;', NULL, 0, 0, 1);
-INSERT INTO `menu` VALUES (101, 1, '用户列表', '11', NULL, 0, 0, 1);
+INSERT INTO `menu` VALUES (1, 0, '系统管理', 'javaScript:;', 'layui-icon-set', 0, 0, 0);
+INSERT INTO `menu` VALUES (2, 0, '权限管理', 'javaScript:;', 'layui-icon-set', 0, 0, 0);
+INSERT INTO `menu` VALUES (3, 0, '用户管理', 'javaScript:;', 'layui-icon-set', 0, 0, 0);
+INSERT INTO `menu` VALUES (201, 2, '角色列表', '/role/showRoleList', NULL, 0, 0, 1);
+INSERT INTO `menu` VALUES (202, 2, '管理员列表', '/user/userList', '', 0, 0, 1);
+INSERT INTO `menu` VALUES (20101, 201, '编辑角色页面', '/role/showRoleEdit', NULL, 0, 0, 3);
+INSERT INTO `menu` VALUES (20102, 201, '启用/禁用角色', '/role/updateRoleStatus', NULL, 0, 0, 2);
+INSERT INTO `menu` VALUES (20103, 201, '删除角色', '/role/deleteRole', NULL, 0, 0, 2);
 
 -- ----------------------------
 -- Table structure for role
@@ -84,8 +90,7 @@ CREATE TABLE `role`  (
 -- ----------------------------
 -- Records of role
 -- ----------------------------
-INSERT INTO `role` VALUES (1, '超级管理员', '1,101', 0, '2019-08-20 14:39:23');
-INSERT INTO `role` VALUES (2, '后台管理员', '1,101', 0, '2019-08-20 20:25:15');
+INSERT INTO `role` VALUES (1, '超级管理员', '20103,2,20102,201,20101,202', 0, '2019-08-20 14:39:23');
 
 -- ----------------------------
 -- Table structure for user
