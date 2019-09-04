@@ -45,7 +45,7 @@
                             </div>
                             <div class="layui-container" style="margin-left: -25px;">
                                 <div class="test-table-reload-btn" style="margin-bottom: 10px;">
-                                    <button class="layui-btn addThis" type="button" style="margin-left: 10px" data-id="0">新增管理员</button>
+                                    <button class="layui-btn addThis" type="button" style="margin-left: 10px" data-id="">新增管理员</button>
                                 </div>
                             </div>
                             <table class="layui-table">
@@ -70,14 +70,14 @@
                                         <td>${l.status==1?'正常':'禁用'}</td>
                                         <td><fmt:formatDate value="${l.createtime}" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate></td>
                                         <td>
-                                            <button data-id="${l.id}" data-type="editThis" class="layui-btn layui-btn-sm layui-btn-primary editThis">编辑</button>
+                                            <button type="button" data-id="${l.id}" data-type="editThis" class="layui-btn layui-btn-sm layui-btn-primary editThis">编辑</button>
                                             <c:if test="${l.status==1}">
-                                                <button data-id="${l.id}" data-status="0" data-type="updateThis" class="layui-btn layui-btn-sm layui-btn-warm updateThis">禁用</button>
+                                                <button type="button" data-id="${l.id}" data-status="0" data-type="updateThis" class="layui-btn layui-btn-sm layui-btn-warm updateThis">禁用</button>
                                             </c:if>
                                             <c:if test="${l.status==0}">
-                                                <button data-id="${l.id}" data-status="1" data-type="updateThis" class="layui-btn layui-btn-sm layui-btn-normal updateThis">启用</button>
+                                                <button type="button" data-id="${l.id}" data-status="1" data-type="updateThis" class="layui-btn layui-btn-sm layui-btn-normal updateThis">启用</button>
                                             </c:if>
-                                            <button data-id="${l.id}" data-type="delThis" class="layui-btn layui-btn-sm layui-btn-danger delThis">删除</button>
+                                            <button type="button" data-id="${l.id}" data-type="delThis" class="layui-btn layui-btn-sm layui-btn-danger delThis">删除</button>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -97,9 +97,9 @@
     <script type="text/javascript" src="/js/common.js"></script>
     <script>
         layui.config({
-            base: '/layuiadmin/' //静态资源所在路径
+            base: '/layuiadmin/' // 静态资源所在路径
         }).extend({
-            index: 'lib/index' //主入口模块
+            index: 'lib/index' // 主入口模块
         }).use(['index', 'laydate'], function(){
             var $ = layui.$,
                 admin = layui.admin,
@@ -113,7 +113,7 @@
                         title:'新增/编辑管理员',
                         type: 2,
                         area: ['550px', '520px'],
-                        content: '/user/editUser?id='+id
+                        content: '/user/showUserEdit?id='+id
                     });
                 },
                 delThis:function (id,url) {
