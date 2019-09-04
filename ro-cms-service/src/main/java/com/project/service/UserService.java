@@ -1,7 +1,9 @@
 package com.project.service;
 
 import com.github.pagehelper.PageHelper;
+import com.project.dao.RoleMapper;
 import com.project.dao.UserMapper;
+import com.project.entity.Role;
 import com.project.entity.User;
 import com.project.rest.GetRest;
 import com.project.rest.RestResponse;
@@ -22,6 +24,8 @@ public class UserService {
 
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private RoleMapper roleMapper;
 
     /**
      * 修改密码
@@ -69,6 +73,11 @@ public class UserService {
             PageHelper.startPage(user.getPage(), user.getRows());
         }
         List<User> list = userMapper.queryList(user);
+        for (User u : list) {
+            // 角色名称
+            Role role = roleMapper.selectByPrimaryKey(u.getRoleid());
+            u.setRoleName(role.getName());
+        }
         return list;
     }
 }

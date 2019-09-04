@@ -66,7 +66,7 @@
                                         <td>${l.id}</td>
                                         <td>${l.login}</td>
                                         <td>${l.nickname}</td>
-                                        <td>${l.roleid}</td>
+                                        <td>${l.roleName}</td>
                                         <td>${l.status==1?'正常':'禁用'}</td>
                                         <td><fmt:formatDate value="${l.createtime}" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate></td>
                                         <td>
