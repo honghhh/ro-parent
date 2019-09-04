@@ -10,7 +10,8 @@
 			<input type="button" onclick="funPage(2)" class="layui-btn layui-btn-sm layui-btn-normal" value="上一页"/>
 			<input type="button" onclick="funPage(3)" class="layui-btn layui-btn-sm layui-btn-normal" value="下一页"/>
 			<input type="button" onclick="funPage(4)" class="layui-btn layui-btn-sm layui-btn-normal" value="末页"/>
-			<span>当前第<span id="nowpage">${pageInfo.pageNum}</span>页[共<span id="totalnum">${pageInfo.totalnum}</span>条,
+			<span>当前第<span id="nowpage">${pageInfo.pageNum}</span>页
+			[共<span id="total">${pageInfo.total}</span>条,
 	   		<span id="totalpages">${pageInfo.pages}</span>页];</span>
 			<span style="font-size: 16px">第</span>&nbsp;&nbsp;
 			<input type="text" id="topage"  class="layui-input layui-input-inline" style="width:60px;margin-bottom: 5px; text-align: center;height:30px"
@@ -30,15 +31,15 @@
 			}
 		});
 	});
-	//处理分页
+	// 处理分页
 	function funPage(flag) {
 		var page = parseInt($("#page").val());
 		var endnum = parseInt($("#endnum").val());
-		//如果是首页
+		// 如果是首页
 		if (flag == 1) {
 			page = 1;
 		}
-		//如果是上一页
+		// 如果是上一页
 		if (flag == 2) {
 			if (page <= 1) {
 				layer.msg("已经是第一页");
@@ -46,7 +47,7 @@
 			}
 			page = page - 1;
 		}
-		//如果是下一页
+		// 如果是下一页
 		if (flag == 3) {
 			if ((page + 1) > endnum) {
 				layer.msg("已经是最后一页");
@@ -54,11 +55,11 @@
 			}
 			page = page + 1;
 		}
-		//如果是末页
+		// 如果是末页
 		if (flag == 4) {
 			page = endnum;
 		}
-		//如果是跳转
+		// 如果是跳转
 		if (flag == 5) {
 			var pageVal = $("#topage").val();
 			if(pageVal.length < 1 || isNaN(pageVal)){
@@ -70,7 +71,7 @@
 				layer.msg("请输入正确页面",{icon:3});
 				return;
 			}
-			page = topage;
+			page = toPage;
 		}
 		$("#page").val(page);
 		$("#issearch").val(0);
