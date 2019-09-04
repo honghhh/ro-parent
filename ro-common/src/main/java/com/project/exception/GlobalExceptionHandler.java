@@ -23,14 +23,15 @@ public class GlobalExceptionHandler {
 
 	@ExceptionHandler(value = Exception.class)
     @ResponseBody
-    public RestResponse errorResponse(HttpServletRequest req, Exception e) {
+    public RestResponse errorResponse(Exception e) {
 	    e.printStackTrace();
 	    return GetRest.getFail("请求错误");
     }
 
 	@ExceptionHandler(value = {IOException.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public RestResponse exception(Exception exception) {
+    public RestResponse exception(Exception e) {
+        e.printStackTrace();
 	    return GetRest.getFail("流处理异常");
     }
 
@@ -42,6 +43,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(JSONException.class)
     @ResponseBody
     public RestResponse handleBusinessException(JSONException e){
+        e.printStackTrace();
         return GetRest.getFail(e.getMessage());
     }
 
