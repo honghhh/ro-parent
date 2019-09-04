@@ -71,7 +71,7 @@
 				layer.msg("请输入正确页面",{icon:3});
 				return;
 			}
-			page = topage;
+			page = toPage;
 		}
 		$("#page").val(page);
 		$("#issearch").val(0);
