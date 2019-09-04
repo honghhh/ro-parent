@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @description 用户Handle
+ * @description 管理员Handle
  * @author: huangh
  * @since 2019-09-02 17:19
  */

@@ -3,7 +3,7 @@ package com.project.entity;
 import java.util.Date;
 
 /**
- * 后台账号表
+ * 管理员账号表
  * @author huangh
  */
 public class User extends Page {
