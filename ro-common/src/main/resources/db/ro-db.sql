@@ -11,7 +11,7 @@
  Target Server Version : 50560
  File Encoding         : 65001
 
- Date: 04/09/2019 11:19:47
+ Date: 04/09/2019 11:24:29
 */
 
 SET NAMES utf8mb4;
@@ -106,7 +106,7 @@ CREATE TABLE `user`  (
   `status` int(2) NULL DEFAULT 0 COMMENT '0有效 -1无效',
   `createtime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台账号表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '管理员账号表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of user
