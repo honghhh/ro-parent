@@ -5,7 +5,7 @@ package com.project.utils;
  * @author: huangh
  * @since 2019-09-05 15:26
  */
-public class ExportMapping {
+public class ExcelMapping {
 
     /** 操作 - 导出操作日志 */
     public static final String EXPORT_LOG_LIST = "/export/exportLogList";

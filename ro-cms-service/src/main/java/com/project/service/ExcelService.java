@@ -14,7 +14,7 @@ import java.util.List;
  * @since 2019-09-05 15:30
  */
 @Service
-public class ExportService {
+public class ExcelService {
 
     @Autowired
     private LogService logService;
