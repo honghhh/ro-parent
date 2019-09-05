@@ -6,8 +6,10 @@ import com.project.dao.UserMapper;
 import com.project.entity.Role;
 import com.project.entity.RoleExample;
 import com.project.entity.User;
+import com.project.exception.ThrowJsonException;
 import com.project.rest.GetRest;
 import com.project.rest.RestResponse;
+import com.project.utils.FunctionUtils;
 import com.project.utils.StaticUtils;
 import com.project.utils.pwd.Encode;
 import org.apache.commons.lang3.StringUtils;
@@ -15,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -90,7 +93,7 @@ public class UserService {
      * @param imgUrl 图片信息
      * @return com.project.rest.RestResponse
      */
-    public RestResponse editUser(User userObj, MultipartFile imgUrl) {
+    public RestResponse editUser(User userObj, HttpServletRequest request, MultipartFile imgUrl) {
         if (userObj.getLogin() == null) {
             return GetRest.getFail("请输入账号");
         }
@@ -111,7 +114,11 @@ public class UserService {
         }
         if (imgUrl != null) {
             // 上传头像
-
+            String headurl = FunctionUtils.uploadOneImages(request, imgUrl);
+            if (StringUtils.isBlank(headurl)) {
+                throw new ThrowJsonException("上传失败");
+            }
+            userObj.setHeadurl(headurl);
         }
         int i = 0;
         if (userObj.getId() == null) {

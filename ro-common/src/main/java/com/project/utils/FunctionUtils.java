@@ -3,9 +3,11 @@ package com.project.utils;
 import com.alibaba.fastjson.JSONObject;
 import com.project.rest.RestResponse;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
@@ -217,5 +219,127 @@ public class FunctionUtils {
         out.print(json);
         out.flush();
         out.close();
+    }
+
+    /**
+     * 上传单个图片到webapp/images/upload文件夹下
+     * @param request 请求对象
+     * @param file 图片信息
+     * @return java.lang.String
+     */
+    public static String uploadOneImages(HttpServletRequest request, MultipartFile file) {
+        StringBuffer purls = new StringBuffer();
+        try {
+            // webapp目录
+            String java = "src\\main\\webapp";
+            // webapp下的保存图片保存目录
+            String uploadDir = "\\images\\upload";
+
+            // 获取项目编译的目录
+            String realPath = request.getSession().getServletContext().getRealPath("/");
+
+            // 获取项目根目录(替换编译目录为空)
+            // D: \ java \ workspace_idea \ ro-parent \ ro-cms-controller \
+            realPath = realPath.replace("target\\ro-cms-controller", "");
+            System.out.println("打印项目根目录" + realPath);
+
+            // 获取图片保存全目录(根目录+webapp目录+webapp下的图片保存目录)
+            // D: \ java \ workspace_idea \ ro-parent \ ro-cms-controller \ src \ main \ webapp \ images \ upload
+            realPath = realPath + java + uploadDir;
+            System.out.println("打印图片保存全目录" + realPath);
+
+            // 如果当前项目里不存在images文件夹，就创建
+            File fileUrl = new File(realPath);
+            if (!fileUrl.exists()) {
+                fileUrl.mkdir();
+            }
+
+            // 上传图片的原名称
+            String filename = file.getOriginalFilename();
+            // 图片后缀名
+            String ext = filename.substring(filename.lastIndexOf(".") + 1);
+            // 保存到数据库的图片全名带后缀 唯一
+            String purlName = String.valueOf(System.currentTimeMillis()) + "." + ext;
+            // 创建File对象，传入目标路径参数，和新的文件别名
+            String purl = realPath + "\\" + purlName;
+            System.out.println("打印图片保存路径" + purl);
+
+            // 将上传的图片复制到purl路径下
+            file.transferTo(new File(purl));
+            // 数据库保存路径(webapp下的图片保存目录 + "/" + 图片名称带后缀 + ",")
+            uploadDir = uploadDir.replace("\\", "/") + "/" + purlName + ",";
+            purls.append(uploadDir);
+            System.out.println("打印数据库保存路径" + uploadDir);
+
+            // 去掉最后一个，号
+            purls.setLength(purls.length() - 1);
+            System.out.println("返回路径" + purls);
+            return purls.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    /**
+     * 上传多张图片到webapp/images/upload文件夹下
+     * @param request 请求对象
+     * @param files 图片信息数组
+     * @return java.lang.String
+     */
+    public static String uploadMoreImages(HttpServletRequest request, MultipartFile[] files) {
+        StringBuffer purls = new StringBuffer();
+        try {
+            // webapp目录
+            String java = "src\\main\\webapp";
+            // webapp下的保存图片保存目录
+            String uploadDir = "\\images\\upload";
+
+            // 获取项目编译的目录
+            String realPath = request.getSession().getServletContext().getRealPath("/");
+
+            // 获取项目根目录(替换编译目录为空)
+            // D: \ java \ workspace_idea \ ro-parent \ ro-cms-controller \
+            realPath = realPath.replace("target\\ro-cms-controller", "");
+            System.out.println("打印项目根目录" + realPath);
+
+            // 获取图片保存全目录(根目录+webapp目录+webapp下的图片保存目录)
+            // D: \ java \ workspace_idea \ ro-parent \ ro-cms-controller \ src \ main \ webapp \ images \ upload
+            realPath = realPath + java + uploadDir;
+            System.out.println("打印图片保存全目录" + realPath);
+
+            // 如果当前项目里不存在images文件夹，就创建
+            File fileUrl = new File(realPath);
+            if (!fileUrl.exists()) {
+                fileUrl.mkdir();
+            }
+
+            // 循环上传文件
+            for (MultipartFile file : files) {
+                // 上传图片的原名称
+                String filename = file.getOriginalFilename();
+                // 图片后缀名
+                String ext = filename.substring(filename.lastIndexOf(".") + 1);
+                // 保存到数据库的图片全名带后缀 唯一
+                String purlName = String.valueOf(System.currentTimeMillis()) + "." + ext;
+                // 创建File对象，传入目标路径参数，和新的文件别名
+                String purl = realPath + "\\" + purlName;
+                System.out.println("打印图片保存路径" + purl);
+
+                // 将上传的图片复制到purl路径下
+                file.transferTo(new File(purl));
+                // 数据库保存路径(webapp下的图片保存目录 + "/" + 图片名称带后缀 + ",")
+                uploadDir = uploadDir.replace("\\", "/") + "/" + purlName + ",";
+                purls.append(uploadDir);
+                System.out.println("打印数据库保存路径" + uploadDir);
+            }
+            // 去掉最后一个，号
+            purls.setLength(purls.length() - 1);
+            System.out.println("返回路径" + purls);
+            return purls.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 }

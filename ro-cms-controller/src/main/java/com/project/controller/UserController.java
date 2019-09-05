@@ -95,8 +95,8 @@ public class UserController {
      */
     @RequestMapping(value = UserMapping.EDIT_USER)
     @ResponseBody
-    public RestResponse editUser(User userObj, @RequestParam(name = "imgUrl", required = false) MultipartFile imgUrl) {
-        RestResponse result = userService.editUser(userObj, imgUrl);
+    public RestResponse editUser(User userObj, HttpServletRequest request, @RequestParam(name = "imgUrl", required = false) MultipartFile imgUrl) {
+        RestResponse result = userService.editUser(userObj, request, imgUrl);
         return result;
     }
 
