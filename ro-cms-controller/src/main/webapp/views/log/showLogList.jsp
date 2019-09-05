@@ -33,6 +33,7 @@
                                     </div>
                                     <div class="layui-col-sm3">
                                         <button class="layui-btn layui-btn" type="submit">查询</button>
+                                        <button class="layui-btn layui-btn-warm exportThis" data-type="exportThis" type="button">导出</button>
                                     </div>
                                     <div class="layui-col-md12"><hr></div>
                                 </div>
@@ -101,6 +102,19 @@
                 elem: '#laydate-cn',
                 range:'~',
                 max:today
+            });
+
+            var active = {
+                exportThis:function (queryTime) {
+                    window.location.href = encodeURI("/export/exportLogList?queryTime=" + queryTime);
+                }
+            };
+
+            // 导出
+            $('.exportThis').on('click',function () {
+                var exportThis = $(this).data('type');
+                var queryTime = $('input[name="queryTime"]').val();
+                active[exportThis] && active[exportThis].call(this,queryTime);
             });
         });
     </script>

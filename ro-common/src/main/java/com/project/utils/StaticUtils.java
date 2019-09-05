@@ -17,4 +17,9 @@ public class StaticUtils {
      * 默认密码
      */
     public static final String DEFAULT_PASSWORD = "888888";
+
+    /**
+     * Excel最大记录行数
+     */
+    public static final Integer EXCEL_MAX_LINE = 65535;
 }
