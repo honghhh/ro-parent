@@ -6,6 +6,7 @@ import com.project.entity.Menu;
 import com.project.entity.MenuExample;
 import com.project.entity.Role;
 import com.project.entity.RoleExample;
+import com.project.log.SystemLog;
 import com.project.rest.GetRest;
 import com.project.rest.RestResponse;
 import com.project.utils.StaticUtils;
@@ -44,6 +45,7 @@ public class RoleService {
      * @param role 角色信息
      * @return com.project.rest.RestResponse
      */
+    @SystemLog(module = "权限管理", methods = "新增/编辑角色")
     public RestResponse editRole(Role role) {
         if (StringUtils.isBlank(role.getName())) {
             return GetRest.getFail("请填写角色名称");
@@ -73,6 +75,7 @@ public class RoleService {
      * @param status 状态
      * @return com.project.rest.RestResponse
      */
+    @SystemLog(module = "权限管理", methods = "启用/禁用角色")
     public RestResponse updateRoleStatus(Integer id, Integer status) {
         Role role = roleMapper.selectByPrimaryKey(id);
         if (role == null) {
@@ -91,6 +94,7 @@ public class RoleService {
      * @param id 角色id
      * @return com.project.rest.RestResponse
      */
+    @SystemLog(module = "权限管理", methods = "删除角色")
     public RestResponse deleteRole(Integer id) {
         int i = roleMapper.deleteByPrimaryKey(id);
         if (i < 1) {

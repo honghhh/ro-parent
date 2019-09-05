@@ -7,6 +7,7 @@ import com.project.entity.Role;
 import com.project.entity.RoleExample;
 import com.project.entity.User;
 import com.project.exception.ThrowJsonException;
+import com.project.log.SystemLog;
 import com.project.rest.GetRest;
 import com.project.rest.RestResponse;
 import com.project.utils.FunctionUtils;
@@ -41,6 +42,7 @@ public class UserService {
      * @param newPwdTwo 确认密码
      * @return com.project.rest.RestResponse
      */
+    @SystemLog(module = "系统管理", methods = "修改密码")
     public RestResponse updatePassword(Integer userId, String oldPwd, String newPwdOne, String newPwdTwo) {
         if (StringUtils.isBlank(oldPwd)) {
             return GetRest.getFail("请输入旧密码");
@@ -93,6 +95,7 @@ public class UserService {
      * @param imgUrl 图片信息
      * @return com.project.rest.RestResponse
      */
+    @SystemLog(module = "权限管理", methods = "新增/编辑管理员")
     public RestResponse editUser(User userObj, HttpServletRequest request, MultipartFile imgUrl) {
         if (userObj.getLogin() == null) {
             return GetRest.getFail("请输入账号");
@@ -138,6 +141,7 @@ public class UserService {
      * @param id 管理员id
      * @return com.project.rest.RestResponse
      */
+    @SystemLog(module = "权限管理", methods = "删除管理员")
     public RestResponse deleteUser(Integer id) {
         int i = userMapper.deleteByPrimaryKey(id);
         if (i < 1) {
@@ -152,6 +156,7 @@ public class UserService {
      * @param status 状态
      * @return com.project.rest.RestResponse
      */
+    @SystemLog(module = "权限管理", methods = "启用/禁用管理员")
     public RestResponse updateUserStatus(Integer id, Integer status) {
         User user = userMapper.selectByPrimaryKey(id);
         if (user == null) {

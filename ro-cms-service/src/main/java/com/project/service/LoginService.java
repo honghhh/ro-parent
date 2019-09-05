@@ -8,6 +8,7 @@ import com.project.entity.Menu;
 import com.project.entity.MenuExample;
 import com.project.entity.Role;
 import com.project.entity.User;
+import com.project.log.SystemLog;
 import com.project.rest.GetRest;
 import com.project.rest.RestResponse;
 import com.project.session.CmsSession;
@@ -49,6 +50,7 @@ public class LoginService {
      * @param passWord 密码
      * @return com.project.rest.RestResponse
      */
+    @SystemLog(module = "系统管理", methods = "管理员登录")
     public RestResponse login(HttpServletRequest request, HttpServletResponse response, String userName, String passWord){
         if (StringUtils.isBlank(userName)) {
             return GetRest.getFail("请输入账号");
@@ -116,6 +118,7 @@ public class LoginService {
      * @param code 验证码
      * @return com.project.rest.RestResponse
      */
+    @SystemLog(module = "系统管理", methods = "管理员注册")
     public RestResponse register(HttpServletRequest request, String userName, String passWord, String code) {
         if (StringUtils.isBlank(userName)) {
             return GetRest.getFail("请输入账号");

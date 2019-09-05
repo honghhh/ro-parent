@@ -7,5 +7,6 @@ package com.project.utils;
  */
 public class LogMapping {
 
+    /** 页面 - 操作日志 */
     public static final String SHOW_LOG_LIST = "/log/showLogList";
 }
