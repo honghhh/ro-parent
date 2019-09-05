@@ -358,5 +358,7 @@
       <if test="endTime != null and endTime != null">
           and DATE_FORMAT(gmtcreate,'%Y%m%d') &lt;= DATE_FORMAT(#{endTime,jdbcType=VARCHAR},'%Y%m%d')
       </if>
+      order by
+          gmtcreate desc
   </select>
 </mapper>
