@@ -93,4 +93,7 @@ public interface LogMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(Log record);
+
+    /** 查询日志列表 */
+    List<Log> queryList(Log log);
 }
