@@ -328,7 +328,7 @@
           and login = #{login,jdbcType=VARCHAR}
       </if>
       <if test="nickname != null and nickname !=''">
-          and nickname = #{nickname,jdbcType=VARCHAR}
+          and nickname like CONCAT("%", #{nickname,jdbcType=VARCHAR}, "%")
       </if>
   </select>
 </mapper>
