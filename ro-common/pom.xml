@@ -480,7 +480,7 @@
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk15on</artifactId>
-            <version>1.59</version>
+            <version>1.67</version>
         </dependency>
 
         <!-- 引入JWT依赖,由于是基于Java，所以需要的是java-jwt -->
